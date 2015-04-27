@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Joey's Blog]]></title>
+  <subtitle><![CDATA[my codeing road]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://joeyzone.github.io/"/>
+  <updated>2015-04-24T07:10:16.000Z</updated>
+  <id>http://joeyzone.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Joey]]></name>
+    <email><![CDATA[joeyzone@gmail.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[mizhe code freamwork instuction]]></title>
+    <link href="http://joeyzone.github.io/2015/04/24/mizhe-code-freamwork-instuction/"/>
+    <id>http://joeyzone.github.io/2015/04/24/mizhe-code-freamwork-instuction/</id>
+    <published>2015-04-24T06:07:52.000Z</published>
+    <updated>2015-04-24T07:10:16.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="米折框架代码说明书">米折框架代码说明书</h2><h6 id="文章结尾有简单代码规范可参考">文章结尾有简单代码规范可参考</h6><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/blog11.jpg"></p>
+<h2 id="环境配置">环境配置</h2><p>&gt;</p>
+<ul>
+<li>首先在本机安装nodejs及npm</li>
+<li><p>安装完成后运行</p>
+<pre><code>npm <span class="keyword">install</span> -g bakari-builder
+</code></pre><p>&gt;</p>
+</li>
+<li>从svn下载最新项目代码 svn地址 : <a href="http://svn.mizhe.com/repos/mizhe/trunk" target="_blank" rel="external">http://svn.mizhe.com/repos/mizhe/trunk</a></li>
+<li>进入项目根目录如：cd D://mizhe</li>
+<li><p>执行bakari命令</p>
+<pre><code><span class="comment">//此命令用来生成测试环境代码及线上压缩代码</span>
+bakari build
+</code></pre><h5 id="具体bakari的使用方法请参考_https://github-com/EarlyH/bakari-builder">具体bakari的使用方法请参考 <a href="https://github.com/EarlyH/bakari-builder" target="_blank" rel="external">https://github.com/EarlyH/bakari-builder</a></h5></li>
+</ul>
+<blockquote>
+<hr>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="米折框架代码说明书">米折框架代码说明书</h2><h6 id="文章结尾有简单代码规范可参考">文章结尾有简单代码规范可参考</h6><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/blog11.jpg"><]]>
+    </summary>
+    
+  </entry>
+  
+</feed>
