@@ -1344,6 +1344,43 @@ a.article-title:hover {
   max-width: 100%;
   margin: 0 auto;
 }
+.pagepart {
+  margin: 1em 0;
+  clear: both;
+  overflow: hidden;
+}
+.pagepart a {
+  display: block;
+  float: left;
+  width: 50%;
+  background: #dbdbdb;
+  text-align: center;
+  padding: 0.4em 0;
+  color: #1ba1e2;
+  -webkit-transition: background 0.45s color 0.45s;
+  -moz-transition: background 0.45s color 0.45s;
+  -o-transition: background 0.45s color 0.45s;
+  -ms-transition: background 0.45s color 0.45s;
+  -webkit-transition: background 0.45s color 0.45s;
+  -moz-transition: background 0.45s color 0.45s;
+  -ms-transition: background 0.45s color 0.45s;
+  transition: background 0.45s color 0.45s;
+}
+.pagepart a:hover {
+  color: #fafafa;
+  background: #717171;
+}
+.pagepart a.prev::before {
+  content: "上一篇: ";
+  padding-right: 0.5em;
+}
+.pagepart a.next::before {
+  content: "下一篇: ";
+  padding-right: 0.5em;
+}
+.alignright.next {
+  float: right;
+}
 #comments {
   padding: 30px 30px 20px;
 }
