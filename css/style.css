@@ -505,12 +505,14 @@ body {
   color: rgba(255,255,255,0.7);
   font: normal normal normal 16px/1 FontAwesome;
 }
-.search-form-input {
+.search-form .search-form-input {
+  padding: 7px 11px 7px 8px;
   width: 100px;
   border: none;
   outline: none;
   background: none;
-  line-height: 1.6em;
+  line-height: 16px;
+  height: 16px;
   -webkit-transition: 0.2s ease-in;
   -moz-transition: 0.2s ease-in;
   -ms-transition: 0.2s ease-in;
@@ -518,11 +520,11 @@ body {
   font: 16px "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   color: rgba(255,255,255,0.7);
 }
-.search-form-input:focus {
+.search-form .search-form-input:focus {
   width: 200px;
 }
-.search-form-input::-webkit-search-results-decoration,
-.search-form-input::-webkit-search-cancel-button {
+.search-form .search-form-input::-webkit-search-results-decoration,
+.search-form .search-form-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
 .search-form-submit {

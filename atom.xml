@@ -4,7 +4,7 @@
   <subtitle><![CDATA[my codeing road]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://joeyzone.github.io/"/>
-  <updated>2015-04-30T02:44:22.000Z</updated>
+  <updated>2015-05-04T03:33:24.000Z</updated>
   <id>http://joeyzone.github.io/</id>
   
   <author>
@@ -13,6 +13,23 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Two-way data binding 数据双向绑定]]></title>
+    <link href="http://joeyzone.github.io/2015/05/04/Two-way-data-binding-%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/"/>
+    <id>http://joeyzone.github.io/2015/05/04/Two-way-data-binding-数据双向绑定/</id>
+    <published>2015-05-04T03:31:56.000Z</published>
+    <updated>2015-05-04T03:33:24.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://joeyzone.github.io/tags/javascript/"/>
+    
+      <category term="javascript-code" scheme="http://joeyzone.github.io/categories/javascript-code/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[mizhe code freamwork instuction]]></title>
