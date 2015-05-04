@@ -1383,8 +1383,14 @@ a.article-title:hover {
 .alignright.next {
   float: right;
 }
-.last-important-text {
+.article-entry .last-important-text {
   color: #990737;
+  margin: 0;
+}
+.pay-img {
+  width: 150px;
+  height: 150px;
+  float: left;
 }
 #comments {
   padding: 30px 30px 20px;
