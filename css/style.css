@@ -1383,6 +1383,9 @@ a.article-title:hover {
 .alignright.next {
   float: right;
 }
+.last-important-text {
+  color: #990737;
+}
 #comments {
   padding: 30px 30px 20px;
 }

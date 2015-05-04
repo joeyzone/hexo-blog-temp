@@ -6,15 +6,16 @@
   
   <title>Two-way data binding 数据双向绑定 | Joey&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个普通前端的博客">
+  <meta name="description" content="数据双向绑定实现及原理从AngularJS深入理解数据绑定。参考博文 http://teropa.info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest.html中文博文 构建自己的AngularJS http://www.ituring.com.cn/article/39865感谢@EarlyH给本文提供的专业讲座">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Two-way data binding 数据双向绑定">
 <meta property="og:url" content="http://joeyzone.github.io/2015/05/04/Two-way-data-binding-数据双向绑定/index.html">
 <meta property="og:site_name" content="Joey's Blog">
-<meta property="og:description" content="一个普通前端的博客">
+<meta property="og:description" content="数据双向绑定实现及原理从AngularJS深入理解数据绑定。参考博文 http://teropa.info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest.html中文博文 构建自己的AngularJS http://www.ituring.com.cn/article/39865感谢@EarlyH给本文提供的专业讲座">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/0504.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Two-way data binding 数据双向绑定">
-<meta name="twitter:description" content="一个普通前端的博客">
+<meta name="twitter:description" content="数据双向绑定实现及原理从AngularJS深入理解数据绑定。参考博文 http://teropa.info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest.html中文博文 构建自己的AngularJS http://www.ituring.com.cn/article/39865感谢@EarlyH给本文提供的专业讲座">
   
   
 
@@ -130,11 +131,79 @@ var _hmt = _hmt || [];
 </a>
       </p>
       <div class="article-entry" itemprop="articleBody">
-        
+        <h2 id="数据双向绑定实现及原理">数据双向绑定实现及原理</h2><h6 id="从AngularJS深入理解数据绑定。">从AngularJS深入理解数据绑定。</h6><h6 id="参考博文_http://teropa-info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest-html">参考博文 <a href="http://teropa.info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest.html" target="_blank" rel="external">http://teropa.info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest.html</a></h6><h6 id="中文博文_构建自己的AngularJS_http://www-ituring-com-cn/article/39865">中文博文 构建自己的AngularJS <a href="http://www.ituring.com.cn/article/39865" target="_blank" rel="external">http://www.ituring.com.cn/article/39865</a></h6><h6 id="感谢@EarlyH给本文提供的专业讲座">感谢@EarlyH给本文提供的专业讲座</h6><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/0504.jpg"></p>
+<h6 id="本人也未接触过AngularJS，本博文不会畅谈此内容，没接触过AngularJS也不必担心看不懂">本人也未接触过AngularJS，本博文不会畅谈此内容，没接触过AngularJS也不必担心看不懂</h6><h4 id="什么是数据双向绑定">什么是数据双向绑定</h4><p>有些文章也叫数据双向绑定为脏值检查，不同叫法而已。数据绑定，就是一个对象的数据绑定到另一个对象上，双向只是指这个过程是双向的而已。<br>其实在同样遵循ECMAScript协议的Flex。已经自带双向绑定功能。只是在javascript中，需要自己实现。</p>
+<h4 id="简单实现">简单实现</h4><p>将需要监听其改变的值和改变后的调用函数储存在一个临时对象中，并把这个临时对象push到监听数组中。</p>
+<p>遍历监听数组，对比新值与旧值。看值是否变化决定是否回调</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Scope</span><span class="params">()</span></span>{
+    <span class="comment">//储存监听器对象的数组</span>
+    this.<span class="variable">$$watchers</span> = [];
+}
+
+<span class="comment">//定义$watch方法</span>
+Scope.prototype.<span class="variable">$watch</span> = <span class="function"><span class="keyword">function</span><span class="params">(watchFn,listenFn)</span></span>{
+    <span class="comment">//私有，临时变量watcher</span>
+    <span class="keyword">var</span> watcher = {
+        watchFn : watchFn,
+        listenFn : listenFn
+    };
+    <span class="comment">//添加到监听数组</span>
+    this.<span class="variable">$$watchers</span>.push(watcher);
+}
+</code></pre><p>warcher对象里有个watchFn,这是个返回监听值的方法，但返回的是scope对象上的属性值，不能是任意值。这点要理解</p>
+<pre><code><span class="comment">//执行脏值检测</span>
+Scope.prototype.$digest = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    <span class="keyword">var</span> len = <span class="keyword">this</span>.$$watchers.length;
+    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; len ; i++){
+        <span class="keyword">var</span> watch = <span class="keyword">this</span>.$$watchers[i];
+        <span class="keyword">var</span> newValue = watch.watchFn(<span class="keyword">this</span>);
+        <span class="keyword">var</span> oldValue = watch.last;
+        <span class="keyword">if</span>(newValue !== oldValue){
+            watch.listenFn(newValue,oldValue,<span class="keyword">this</span>);
+        }
+        watch.last = newValue;
+    }
+}
+</code></pre><p>但是如果在listenFn再次改变监听中的值，则不会引起脏值检测。<br>或者，如果另外一个监听器也在听同一个值。listenFn1有可能不会回调。由于遍历的顺序问题<br>解决办法就是循环检测，但是不能无止境的循环检测，因此，我们加了一个最大检测次数</p>
+<pre><code><span class="comment">//执行脏值检测一次</span>
+Scope.prototype.$digestOnce = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    <span class="keyword">var</span> len = <span class="keyword">this</span>.$$watchers.length;
+    <span class="keyword">var</span> dirty;
+    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; len ; i++){
+        <span class="comment">//this.$$watchers[i].listenFn();</span>
+        <span class="keyword">var</span> watch = <span class="keyword">this</span>.$$watchers[i];
+        <span class="keyword">var</span> newValue = watch.watchFn(<span class="keyword">this</span>);
+        <span class="keyword">var</span> oldValue = watch.last;
+        <span class="keyword">if</span>(newValue !== oldValue){
+            watch.listenFn(newValue,oldValue,<span class="keyword">this</span>);
+            dirty = <span class="literal">true</span>;
+        }
+        watch.last = newValue;
+
+    }
+    <span class="keyword">return</span> dirty;
+}
+<span class="comment">//执行脏值检测</span>
+Scope.prototype.$digest = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    <span class="keyword">var</span> ttl = <span class="number">10</span>;
+    <span class="keyword">var</span> dirty;
+    <span class="keyword">do</span>{
+        dirty = <span class="keyword">this</span>.$digestOnce();
+        ttl--;
+        <span class="built_in">console</span>.log(<span class="number">1</span>);               
+    }<span class="keyword">while</span>(dirty &amp;&amp; ttl &gt; <span class="number">0</span>);
+}
+</code></pre><p>还有一些小问题，就是判断相等性。如果想检测对象，则自行在Scope的原型中增加判断相等的方法，这里不再赘述。</p>
+
+        <p class="last-important-text">如果还有问题可以留言，必定知无不言。</p>
+        <p class="last-important-text">想要搜索历史文章可使用右上角站内搜索。</p>
+        <p class="last-important-text">如果觉得稍微对您有用，可适当捐献。苦逼程序员买不起房啊~~~</p>
+        <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.jpg" class="pay-img">
       </div>
       <footer class="article-footer">
-        <a data-url="http://joeyzone.github.io/2015/05/04/Two-way-data-binding-数据双向绑定/" data-id="ci99c1mbl0000cga6q6r2s6yl" class="article-share-link">分享到</a>
+        <a data-url="http://joeyzone.github.io/2015/05/04/Two-way-data-binding-数据双向绑定/" data-id="ci99mir9a00000ca6cfl0n6sl" class="article-share-link">分享到</a>
         
+
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
@@ -220,7 +289,8 @@ var _hmt = _hmt || [];
               
 <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="thumbnail">
   
-    <span class="thumbnail-image thumbnail-none"></span>
+    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/0504.jpg
+)" alt="Two-way data binding 数据双向绑定" class="thumbnail-image"></span>
   
 </a>
 
