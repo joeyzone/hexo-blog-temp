@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="KCpzqK3BrU" />
+  
+  <title>commonJS &amp; AMD &amp; CMD | Joey&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="commonJS &amp;amp; AMD &amp;amp; CMD
+这是一个浅显的入门手册（即使不是前端也能轻易理解）ECMAScript2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="commonJS & AMD & CMD">
+<meta property="og:url" content="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/index.html">
+<meta property="og:site_name" content="Joey's Blog">
+<meta property="og:description" content="commonJS &amp;amp; AMD &amp;amp; CMD
+这是一个浅显的入门手册（即使不是前端也能轻易理解）ECMAScript2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/cjs.png">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/flow1.jpg">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/r2.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="commonJS & AMD & CMD">
+<meta name="twitter:description" content="commonJS &amp;amp; AMD &amp;amp; CMD
+这是一个浅显的入门手册（即使不是前端也能轻易理解）ECMAScript2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖">
+  
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7xiqu0.com1.z0.glb.clouddn.com/fav.png" media="screen" />
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1c725d9bb4d748d6b19013e56cfa8e4e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">my codeing road</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">Home</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript-code/">javascript-code</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/mizhe/">mizhe</a></li></ul>
+                  
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="http://www.github.com">About</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                <form class="search-form">
+                      <input type="text" class="search-form-input st-default-search-input" placeholder="Search" autocomplete="off" autocorrect="off" autocapitalize="off">
+                </form>
+                <script type="text/javascript">
+                (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+                e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+                })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+                _st('install','p11AGAW39AoNPwS5dZwx','2.0.0');
+              </script>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/javascript-code/">javascript-code</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-commonJS-AMD-CMD-之辩" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      commonJS &amp; AMD &amp; CMD
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/07/10/commonJS-AMD-CMD-之辩/" class="article-date">
+  <time datetime="2015-07-10T06:55:42.000Z" itemprop="datePublished">2015-07-10</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="commonJS_&amp;_AMD_&amp;_CMD">commonJS &amp; AMD &amp; CMD</h1><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg" width="90%"></p>
+<h4 id="这是一个浅显的入门手册（即使不是前端也能轻易理解）">这是一个浅显的入门手册（即使不是前端也能轻易理解）</h4><h4 id="ECMAScript">ECMAScript</h4><p>2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖循环的解决方案。对js的模块化编程起到了指导性作用，当然ECMAScript的标准的重要性是不言而喻的。</p>
+<p>但是对于这个标准的出现，引用网友的一句话“只要不是最坏的标准，那就一定比没有标准强”。</p>
+<h3 id="commonJS">commonJS</h3><p>CommonJS是一个目前JavaScript模块化的事实标准，他的出现当然是社区中得先驱大牛努力的结果。正是他的努力使得js模块化的编程让大众所介绍并认识。可以说是他推动了整个ECMAScript标准的制定。<br>目前已发展到CommonJS/1.1。链接<a href="http://www.commonjs.org" target="_blank" rel="external">http://www.commonjs.org</a></p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/cjs.png"></p>
+<p>就像官方网站的说明：javascript不再仅仅为浏览器适用。在服务器端，随着这几年nodeJS的火热，commonJS标准也得到非常广泛的推广。commonjs的终极目标——提供一个类似Python，Ruby和Java标准库。</p>
+<p>我们先来介绍下什么事前端模块化编程。</p>
+<p>首先我们把模块简单的理解为方法。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">mod1</span><span class="params">()</span></span>{
+    ...
+}
+</code></pre><p>这样mod1污染了全局变量</p>
+<p>那我们加个命名空间叫module1。</p>
+<pre><code><span class="keyword">var</span> module1 = <span class="keyword">new</span> <span class="built_in">Object</span>({
+    _count : <span class="number">0</span>,
+    m1 : <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{
+    <span class="comment">//...</span>
+    },
+    m2 : <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{
+    <span class="comment">//...</span>
+    }
+});
+</code></pre><p>而这种方式暴露了_count。</p>
+<p>其实最简单也是最常用的是用立即函数的形式</p>
+<pre><code><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    <span class="keyword">var</span> _count = <span class="number">0</span>;
+    <span class="keyword">var</span> m1 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="comment">//...</span>
+    };
+    <span class="keyword">var</span> m2 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="comment">//...</span>
+    };
+    <span class="keyword">return</span> {
+        m1 : m1,
+        m2 : m2
+    };
+})();
+</code></pre><p>这个会带来问题，因为这样的写法肯定不是最优的，还有很多语法糖的东西可以增加，比如全局变量的引入，放大模式等。commonJS产生了，遵从这套标准，意味着任何人写的模块我都能随便引用。再不会有语法糖产生的分歧。</p>
+<p>commonJS到底说了些什么呢？其实他只是定义了自己的一套书写模块的规则，<br>简单来说。比如require用来引入模块。<br>export用来导出模块公用部分。当然这些只是白话的说明，<br>具体请参照wiki上的说明（<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">http://wiki.commonjs.org/wiki/CommonJS</a>）。</p>
+<p>直到现在，我还在讲CommonJS。这是个服务器端的标准，因为服务器端语言如果没有一套标准，就像写通信没有socket标准。写PHP没有框架是一样的。因此为了推动javascript的服务器端进展。不得不有一套commonJS标准。</p>
+<p>但是浏览器端由于偏见或者其他原因，认为网页程序的复杂性有限。模块化有没有都一样。因此它的推广比服务器端node慢很多。<br>但这完全只能算偏见。</p>
+<p>浏览器端也需要模块化，但是一个主要的问题你猜是什么。</p>
+<pre><code><span class="keyword">var</span> md5 = <span class="built_in">require</span>(<span class="string">'MD5'</span>);
+<span class="keyword">var</span> encode_pwd = md5($.cookie(<span class="string">'password'</span>));
+</code></pre><p>服务器端代码就在服务器端，也就是在服务器的内存里。而前端代码放在服务器端，需要http请求才能拿到。所以我才说commonJS适用服务器端。因为代码的执行是同步的。服务器端只需等待代码从内存中返回，当然不用做异步。但是浏览器端如果也这样的话当然可以，但是这样就阻塞了后续代码的执行。因为要等待js代码从服务器端返回。</p>
+<p>那么浏览器端最优的处理方案就是js的异步加载（由于现在代码流行打包all-in-one。看起来已经不重要，甚至说被抛弃）。这也是为什么前端模块化的一个重要原因，在此之前，前端js代码都是按照书写的顺序依次执行。当然，浏览器并不是按顺序下载的js,下载仍然是并行的，这里可能有点难理解。</p>
+<p>那我在这画张图解释下——下载和加载的区别，虽然在所有人都热衷打包代码的大趋势下这些已经不再重要。（为什么要打包代码呢？呵呵）</p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/flow1.jpg" width="80%"></p>
+<h3 id="AMD&amp;CMD">AMD&amp;CMD</h3><h4 id="AMD">AMD</h4><p>浏览器的模块化先驱requireJS是很有代表性的。他提出了参考commonJS的新的AMD标准。</p>
+<h4 id="CMD">CMD</h4><p>这个就要说到淘宝的“玉伯”一直以来对requireJS的鄙视，他坚持最大程度的沿用commonJS语法并遵从commonJS标准。自己弄了个seaJS，知乎上两种标准开始了撕逼大战。</p>
+<p>两者的共同点就是：<br>都参照了commonJS标准<br>都用于前端模块的异步加载<br>入口都只有一个js文件<br>两者不同点：<br>requireJS属于依赖前置。seaJS属于依赖就近，也就是可以把依赖写在代码中任意一行。<br>requireJS是先执行依赖。seaJS是后（根据require的位置）执行依赖，这里要弄清加载和执行是两个不同的动作，加载都是异步加载。</p>
+<p>这是seaJS的写法。这段代码更贴近commonJS的写法。</p>
+<pre><code>define(<span class="reserved">function</span>(<span class="built_in">require</span>, exports, <span class="built_in">module</span>) { 
+    <span class="reserved">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);
+    a.doSomething();
+    <span class="reserved">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);
+    b.doSomething();
+})
+</code></pre><p>这是requireJS的写法。</p>
+<pre><code>define([<span class="string">'./a'</span>,<span class="string">'./b'</span>],<span class="function"><span class="keyword">function</span><span class="params">(a,b)</span></span>{ 
+    a.doSomething();
+    b.doSomething();
+})
+</code></pre><p>虽然看起来是写法上的争执，但是执行上是完全两码事，seaJS推崇按需执行，而requireJS推崇先执行。这点被“玉伯”喷的很惨。原因就是有的模块是“硬依赖”，也就是必须的依赖。还有一类是“软依赖”，比如：</p>
+<pre><code><span class="keyword">if</span>(isLogin){
+    <span class="reserved">var</span> lgoin_show = <span class="built_in">require</span>(<span class="string">'loginShow'</span>);
+    lgoin_show.init();
+}
+</code></pre><p>requireJS刚开始1.0版本时对此束手无策，只能说不管你需不需要，先执行再说。</p>
+<p>但是有一位少年<a href="https://github.com/jrburke/requirejs/issues/183" target="_blank" rel="external">https://github.com/jrburke/requirejs/issues/183</a>在git上提出这个issue。<br>一语惊醒梦中人。requireJS作者答应他在2.0正式版的时候fix it。</p>
+<p>于是在requireJS-2.0的更新文档(<a href="https://github.com/jrburke/requirejs/wiki/Upgrading-to-RequireJS-2.0" target="_blank" rel="external">https://github.com/jrburke/requirejs/wiki/Upgrading-to-RequireJS-2.0</a>)中，我们看到了万众期待的</p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/r2.png"></p>
+<pre><code><span class="keyword">if</span>(isLogin){
+    <span class="built_in">require</span>([<span class="string">'loginShow'</span>],<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        loginShowMod.init();
+    })
+}
+</code></pre><p>“玉伯”仍然硬着头皮也要上。说requireJS是有明显bug,而seaJS是无明显bug的。<br>呵呵，requireJS社区和用户都不知道是seaJS多少倍，文档也丰富得多。明显bug真的是臆想吧。</p>
+<p>要说到底孰优孰劣，我还是看好requireJS。<br>首先，我们都知道“事务的原子性”，<br>rjs先执行的方式在模块内部错误就能得到处理，<br>而seaJS则不然。</p>
+<p>其次，对于习惯了异步加载的同学，会奇怪为啥seaJS中一旦require某个模块，就立马有了呢？<br>这不是同步了吗？<br>其实是seaJS为了达到同步的现象牺牲了部分性能来检测模块中的require字段预先加载好了。</p>
+
+        <p class="last-important-text">如果还有问题可以留言，必定知无不言。</p>
+        <p class="last-important-text">想要搜索历史文章可使用右上角站内搜索。</p>
+        <p class="last-important-text">如果觉得稍微对您有用，请用支付宝轻扫下面捐赠二维码，可适当捐献。苦逼程序员买不起房啊~~~</p>
+        <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.png" class="pay-img">
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/" data-id="cibxdvnc9000at5uulc8amyrf" class="article-share-link">分享到</a>
+        
+
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+        
+<div class="pagepart clearfix">
+  
+    <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="alignleft prev" title="Two-way data binding 数据双向绑定">Two-way data binding 数据双向绑定</a>
+  
+    
+</div>
+
+      </footer>
+    </div>
+  </article>
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-commonJS-AMD-CMD-之辩" data-title="commonJS &amp; AMD &amp; CMD" data-url="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'github'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="twitter" href="/" target="_blank"><i id="icon-twitter" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="facebook" href="/" target="_blank"><i id="icon-facebook" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="google_plus" href="/" target="_blank"><i id="icon-google_plus" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="weibo" href="http://weibo.com/u/2194425080" target="_blank"><i id="icon-weibo" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="/" target="_blank"><i id="icon-rss" class="icon"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">Two-way data binding 数据双向绑定</p>
+      <i class="icon" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/07/10/commonJS-AMD-CMD-之辩/" class="thumbnail">
+  
+    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg
+)" alt="commonJS &amp; AMD &amp; CMD" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/javascript-code/">javascript-code</a></p>
+              <p class="item-title"><a href="/2015/07/10/commonJS-AMD-CMD-之辩/" class="title">commonJS &amp; AMD &amp; CMD</a></p>
+              <p class="item-date"><time datetime="2015-07-10T06:55:42.000Z" itemprop="datePublished">2015-07-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="thumbnail">
+  
+    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/0504.jpg
+)" alt="Two-way data binding 数据双向绑定" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/javascript-code/">javascript-code</a></p>
+              <p class="item-title"><a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="title">Two-way data binding 数据双向绑定</a></p>
+              <p class="item-date"><time datetime="2015-05-04T03:31:56.000Z" itemprop="datePublished">2015-05-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/04/24/mizhe-code-freamwork-instuction/" class="thumbnail">
+  
+    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/blog11.jpg
+)" alt="mizhe code freamwork instuction" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/mizhe/">mizhe</a></p>
+              <p class="item-title"><a href="/2015/04/24/mizhe-code-freamwork-instuction/" class="title">mizhe code freamwork instuction</a></p>
+              <p class="item-date"><time datetime="2015-04-24T06:07:52.000Z" itemprop="datePublished">2015-04-24</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-code/">javascript-code</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mizhe/">mizhe</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mizhe/">mizhe</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/javascript/" style="font-size: 20px;">javascript</a><a href="/tags/mizhe/" style="font-size: 10px;">mizhe</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://www.baobeihuijia.com/">宝贝回家</a>
+          </li>
+        
+          <li>
+            <a href="http://www.ccafc.org.cn/templates/T_Common/index.aspx?nodeid=148">中华少年儿童慈善救助基金会</a>
+          </li>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon" id="icon-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 Joey-鲁俊</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

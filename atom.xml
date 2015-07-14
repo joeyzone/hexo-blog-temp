@@ -4,7 +4,7 @@
   <subtitle><![CDATA[my codeing road]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://joeyzone.github.io/"/>
-  <updated>2015-05-04T08:37:25.000Z</updated>
+  <updated>2015-07-14T07:27:18.000Z</updated>
   <id>http://joeyzone.github.io/</id>
   
   <author>
@@ -13,6 +13,103 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[commonJS & AMD & CMD]]></title>
+    <link href="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-%E4%B9%8B%E8%BE%A9/"/>
+    <id>http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/</id>
+    <published>2015-07-10T06:55:42.000Z</published>
+    <updated>2015-07-14T07:27:18.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="commonJS_&amp;_AMD_&amp;_CMD">commonJS &amp; AMD &amp; CMD</h1><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg" width="90%"></p>
+<h4 id="这是一个浅显的入门手册（即使不是前端也能轻易理解）">这是一个浅显的入门手册（即使不是前端也能轻易理解）</h4><h4 id="ECMAScript">ECMAScript</h4><p>2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖循环的解决方案。对js的模块化编程起到了指导性作用，当然ECMAScript的标准的重要性是不言而喻的。</p>
+<p>但是对于这个标准的出现，引用网友的一句话“只要不是最坏的标准，那就一定比没有标准强”。</p>
+<h3 id="commonJS">commonJS</h3><p>CommonJS是一个目前JavaScript模块化的事实标准，他的出现当然是社区中得先驱大牛努力的结果。正是他的努力使得js模块化的编程让大众所介绍并认识。可以说是他推动了整个ECMAScript标准的制定。<br>目前已发展到CommonJS/1.1。链接<a href="http://www.commonjs.org" target="_blank" rel="external">http://www.commonjs.org</a></p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/cjs.png"></p>
+<p>就像官方网站的说明：javascript不再仅仅为浏览器适用。在服务器端，随着这几年nodeJS的火热，commonJS标准也得到非常广泛的推广。commonjs的终极目标——提供一个类似Python，Ruby和Java标准库。</p>
+<p>我们先来介绍下什么事前端模块化编程。</p>
+<p>首先我们把模块简单的理解为方法。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">mod1</span><span class="params">()</span></span>{
+    ...
+}
+</code></pre><p>这样mod1污染了全局变量</p>
+<p>那我们加个命名空间叫module1。</p>
+<pre><code><span class="keyword">var</span> module1 = <span class="keyword">new</span> <span class="built_in">Object</span>({
+    _count : <span class="number">0</span>,
+    m1 : <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{
+    <span class="comment">//...</span>
+    },
+    m2 : <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{
+    <span class="comment">//...</span>
+    }
+});
+</code></pre><p>而这种方式暴露了_count。</p>
+<p>其实最简单也是最常用的是用立即函数的形式</p>
+<pre><code><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    <span class="keyword">var</span> _count = <span class="number">0</span>;
+    <span class="keyword">var</span> m1 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="comment">//...</span>
+    };
+    <span class="keyword">var</span> m2 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="comment">//...</span>
+    };
+    <span class="keyword">return</span> {
+        m1 : m1,
+        m2 : m2
+    };
+})();
+</code></pre><p>这个会带来问题，因为这样的写法肯定不是最优的，还有很多语法糖的东西可以增加，比如全局变量的引入，放大模式等。commonJS产生了，遵从这套标准，意味着任何人写的模块我都能随便引用。再不会有语法糖产生的分歧。</p>
+<p>commonJS到底说了些什么呢？其实他只是定义了自己的一套书写模块的规则，<br>简单来说。比如require用来引入模块。<br>export用来导出模块公用部分。当然这些只是白话的说明，<br>具体请参照wiki上的说明（<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">http://wiki.commonjs.org/wiki/CommonJS</a>）。</p>
+<p>直到现在，我还在讲CommonJS。这是个服务器端的标准，因为服务器端语言如果没有一套标准，就像写通信没有socket标准。写PHP没有框架是一样的。因此为了推动javascript的服务器端进展。不得不有一套commonJS标准。</p>
+<p>但是浏览器端由于偏见或者其他原因，认为网页程序的复杂性有限。模块化有没有都一样。因此它的推广比服务器端node慢很多。<br>但这完全只能算偏见。</p>
+<p>浏览器端也需要模块化，但是一个主要的问题你猜是什么。</p>
+<pre><code><span class="keyword">var</span> md5 = <span class="built_in">require</span>(<span class="string">'MD5'</span>);
+<span class="keyword">var</span> encode_pwd = md5($.cookie(<span class="string">'password'</span>));
+</code></pre><p>服务器端代码就在服务器端，也就是在服务器的内存里。而前端代码放在服务器端，需要http请求才能拿到。所以我才说commonJS适用服务器端。因为代码的执行是同步的。服务器端只需等待代码从内存中返回，当然不用做异步。但是浏览器端如果也这样的话当然可以，但是这样就阻塞了后续代码的执行。因为要等待js代码从服务器端返回。</p>
+<p>那么浏览器端最优的处理方案就是js的异步加载（由于现在代码流行打包all-in-one。看起来已经不重要，甚至说被抛弃）。这也是为什么前端模块化的一个重要原因，在此之前，前端js代码都是按照书写的顺序依次执行。当然，浏览器并不是按顺序下载的js,下载仍然是并行的，这里可能有点难理解。</p>
+<p>那我在这画张图解释下——下载和加载的区别，虽然在所有人都热衷打包代码的大趋势下这些已经不再重要。（为什么要打包代码呢？呵呵）</p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/flow1.jpg" width="80%"></p>
+<h3 id="AMD&amp;CMD">AMD&amp;CMD</h3><h4 id="AMD">AMD</h4><p>浏览器的模块化先驱requireJS是很有代表性的。他提出了参考commonJS的新的AMD标准。</p>
+<h4 id="CMD">CMD</h4><p>这个就要说到淘宝的“玉伯”一直以来对requireJS的鄙视，他坚持最大程度的沿用commonJS语法并遵从commonJS标准。自己弄了个seaJS，知乎上两种标准开始了撕逼大战。</p>
+<p>两者的共同点就是：<br>都参照了commonJS标准<br>都用于前端模块的异步加载<br>入口都只有一个js文件<br>两者不同点：<br>requireJS属于依赖前置。seaJS属于依赖就近，也就是可以把依赖写在代码中任意一行。<br>requireJS是先执行依赖。seaJS是后（根据require的位置）执行依赖，这里要弄清加载和执行是两个不同的动作，加载都是异步加载。</p>
+<p>这是seaJS的写法。这段代码更贴近commonJS的写法。</p>
+<pre><code>define(<span class="reserved">function</span>(<span class="built_in">require</span>, exports, <span class="built_in">module</span>) { 
+    <span class="reserved">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);
+    a.doSomething();
+    <span class="reserved">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);
+    b.doSomething();
+})
+</code></pre><p>这是requireJS的写法。</p>
+<pre><code>define([<span class="string">'./a'</span>,<span class="string">'./b'</span>],<span class="function"><span class="keyword">function</span><span class="params">(a,b)</span></span>{ 
+    a.doSomething();
+    b.doSomething();
+})
+</code></pre><p>虽然看起来是写法上的争执，但是执行上是完全两码事，seaJS推崇按需执行，而requireJS推崇先执行。这点被“玉伯”喷的很惨。原因就是有的模块是“硬依赖”，也就是必须的依赖。还有一类是“软依赖”，比如：</p>
+<pre><code><span class="keyword">if</span>(isLogin){
+    <span class="reserved">var</span> lgoin_show = <span class="built_in">require</span>(<span class="string">'loginShow'</span>);
+    lgoin_show.init();
+}
+</code></pre><p>requireJS刚开始1.0版本时对此束手无策，只能说不管你需不需要，先执行再说。</p>
+<p>但是有一位少年<a href="https://github.com/jrburke/requirejs/issues/183" target="_blank" rel="external">https://github.com/jrburke/requirejs/issues/183</a>在git上提出这个issue。<br>一语惊醒梦中人。requireJS作者答应他在2.0正式版的时候fix it。</p>
+<p>于是在requireJS-2.0的更新文档(<a href="https://github.com/jrburke/requirejs/wiki/Upgrading-to-RequireJS-2.0" target="_blank" rel="external">https://github.com/jrburke/requirejs/wiki/Upgrading-to-RequireJS-2.0</a>)中，我们看到了万众期待的</p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/r2.png"></p>
+<pre><code><span class="keyword">if</span>(isLogin){
+    <span class="built_in">require</span>([<span class="string">'loginShow'</span>],<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        loginShowMod.init();
+    })
+}
+</code></pre><p>“玉伯”仍然硬着头皮也要上。说requireJS是有明显bug,而seaJS是无明显bug的。<br>呵呵，requireJS社区和用户都不知道是seaJS多少倍，文档也丰富得多。明显bug真的是臆想吧。</p>
+<p>要说到底孰优孰劣，我还是看好requireJS。<br>首先，我们都知道“事务的原子性”，<br>rjs先执行的方式在模块内部错误就能得到处理，<br>而seaJS则不然。</p>
+<p>其次，对于习惯了异步加载的同学，会奇怪为啥seaJS中一旦require某个模块，就立马有了呢？<br>这不是同步了吗？<br>其实是seaJS为了达到同步的现象牺牲了部分性能来检测模块中的require字段预先加载好了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="commonJS_&amp;_AMD_&amp;_CMD">commonJS &amp; AMD &amp; CMD</h1><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg" width="90]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://joeyzone.github.io/tags/javascript/"/>
+    
+      <category term="javascript-code" scheme="http://joeyzone.github.io/categories/javascript-code/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Two-way data binding 数据双向绑定]]></title>
