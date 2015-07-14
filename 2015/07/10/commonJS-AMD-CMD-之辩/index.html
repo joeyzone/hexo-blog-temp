@@ -184,7 +184,10 @@ var _hmt = _hmt || [];
 </code></pre><p>服务器端代码就在服务器端，也就是在服务器的内存里。而前端代码放在服务器端，需要http请求才能拿到。所以我才说commonJS适用服务器端。因为代码的执行是同步的。服务器端只需等待代码从内存中返回，当然不用做异步。但是浏览器端如果也这样的话当然可以，但是这样就阻塞了后续代码的执行。因为要等待js代码从服务器端返回。</p>
 <p>那么浏览器端最优的处理方案就是js的异步加载（由于现在代码流行打包all-in-one。看起来已经不重要，甚至说被抛弃）。这也是为什么前端模块化的一个重要原因，在此之前，前端js代码都是按照书写的顺序依次执行。当然，浏览器并不是按顺序下载的js,下载仍然是并行的，这里可能有点难理解。</p>
 <p>那我在这画张图解释下——下载和加载的区别，虽然在所有人都热衷打包代码的大趋势下这些已经不再重要。（为什么要打包代码呢？呵呵）</p>
+<p>当然是要减少请求啦。</p>
 <p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/flow1.jpg" width="80%"></p>
+<p>首先，在未打包的情况下，不用requireJS等模块加载器，你会怎么写他们的顺序。</p>
+<p>如果这些js文件有的很大，有的很小呢？相信大部分人已经理解，这里我不多赘述模块加载器的异步加载功效。</p>
 <h3 id="AMD&amp;CMD">AMD&amp;CMD</h3><h4 id="AMD">AMD</h4><p>浏览器的模块化先驱requireJS是很有代表性的。他提出了参考commonJS的新的AMD标准。</p>
 <h4 id="CMD">CMD</h4><p>这个就要说到淘宝的“玉伯”一直以来对requireJS的鄙视，他坚持最大程度的沿用commonJS语法并遵从commonJS标准。自己弄了个seaJS，知乎上两种标准开始了撕逼大战。</p>
 <p>两者的共同点就是：<br>都参照了commonJS标准<br>都用于前端模块的异步加载<br>入口都只有一个js文件<br>两者不同点：<br>requireJS属于依赖前置。seaJS属于依赖就近，也就是可以把依赖写在代码中任意一行。<br>requireJS是先执行依赖。seaJS是后（根据require的位置）执行依赖，这里要弄清加载和执行是两个不同的动作，加载都是异步加载。</p>
@@ -224,7 +227,7 @@ var _hmt = _hmt || [];
         <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.png" class="pay-img">
       </div>
       <footer class="article-footer">
-        <a data-url="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/" data-id="cibxdvnc9000at5uulc8amyrf" class="article-share-link">分享到</a>
+        <a data-url="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/" data-id="cic30ytvo000a1kuud7ksaw1f" class="article-share-link">分享到</a>
         
 
         
