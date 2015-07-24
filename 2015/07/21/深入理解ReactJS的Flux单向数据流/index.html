@@ -4,17 +4,28 @@
   <meta charset="utf-8">
   <meta name="baidu-site-verification" content="KCpzqK3BrU" />
   
-  <title>Tag: mizhe | Joey&#39;s Blog</title>
+  <title>深入理解ReactJS的Flux单向数据流 | Joey&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个普通前端的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Joey's Blog">
-<meta property="og:url" content="http://joeyzone.github.io/tags/mizhe/index.html">
+  <meta name="description" content="深入理解ReactJS的Flux单向数据流
+最近看了些reactJS，想要总结一下。对ReactJS完全不了解的可以参考下阮一峰的博文，入门ReactJShttp://www.ruanyifeng.com/blog/2015/03/react.html
+reactJS和Flux是什么关系呢？
+其实说来reactJS算是一种新语言了，叫做JSX。他只不过用了一个一个JSXTransformer的东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解ReactJS的Flux单向数据流">
+<meta property="og:url" content="http://joeyzone.github.io/2015/07/21/深入理解ReactJS的Flux单向数据流/index.html">
 <meta property="og:site_name" content="Joey's Blog">
-<meta property="og:description" content="一个普通前端的博客">
+<meta property="og:description" content="深入理解ReactJS的Flux单向数据流
+最近看了些reactJS，想要总结一下。对ReactJS完全不了解的可以参考下阮一峰的博文，入门ReactJShttp://www.ruanyifeng.com/blog/2015/03/react.html
+reactJS和Flux是什么关系呢？
+其实说来reactJS算是一种新语言了，叫做JSX。他只不过用了一个一个JSXTransformer的东西">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/720.jpg">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/flux-diagram.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Joey's Blog">
-<meta name="twitter:description" content="一个普通前端的博客">
+<meta name="twitter:title" content="深入理解ReactJS的Flux单向数据流">
+<meta name="twitter:description" content="深入理解ReactJS的Flux单向数据流
+最近看了些reactJS，想要总结一下。对ReactJS完全不了解的可以参考下阮一峰的博文，入门ReactJShttp://www.ruanyifeng.com/blog/2015/03/react.html
+reactJS和Flux是什么关系呢？
+其实说来reactJS算是一种新语言了，叫做JSX。他只不过用了一个一个JSXTransformer的东西">
   
   
 
@@ -106,69 +117,131 @@ var _hmt = _hmt || [];
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><i class="icon" id="icon-tag"></i>标签：<em>mizhe</em></h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/javascript-code/">javascript-code</a></h1>
             </div>
             <div class="main-body-content">
               
-  
-  
-    
-    
+  <article id="post-深入理解ReactJS的Flux单向数据流" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year"><i class="icon" id="icon-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/2015/04/24/mizhe-code-freamwork-instuction/" class="thumbnail">
+        <header class="article-header">
+          
   
-    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/blog11.jpg
-)" alt="mizhe code freamwork instuction" class="thumbnail-image"></span>
+    <h1 class="article-title" itemprop="name">
+      深入理解ReactJS的Flux单向数据流
+    </h1>
   
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/07/21/深入理解ReactJS的Flux单向数据流/" class="article-date">
+  <time datetime="2015-07-21T09:59:43.000Z" itemprop="datePublished">2015-07-21</time>
 </a>
-
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/mizhe/">mizhe</a></p>
-        <p class="date"><time datetime="2015-04-24T06:07:52.000Z" itemprop="datePublished">2015-04-24</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/04/24/mizhe-code-freamwork-instuction/" class="title">mizhe code freamwork instuction</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        米折框架代码说明书文章结尾有简单代码规范可参考
-环境配置
-首先在本机安装nodejs及npm
-安装完成后运行
-npm install -g bakari-builder
-
-从svn下载最新项目代码 svn地址 : http://svn.mizhe.com/repos/mizhe/trunk
-
-进入项目根目录如：cd D://mizhe
-执行bakari命令
-//此命令用来生成测试环境代码及线上压缩
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h2 id="深入理解ReactJS的Flux单向数据流">深入理解ReactJS的Flux单向数据流</h2><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/720.jpg" width="100%"></p>
+<h3 id="最近看了些reactJS，想要总结一下。">最近看了些reactJS，想要总结一下。</h3><p>对ReactJS完全不了解的可以参考下阮一峰的博文，入门ReactJS<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/03/react.html</a></p>
+<p>reactJS和Flux是什么关系呢？</p>
+<p>其实说来reactJS算是一种新语言了，叫做JSX。<br>他只不过用了一个一个JSXTransformer的东西把JSX”编译”成了大家都认识的js。<br>当然这种东西线上是不会用的。线上用的是”编译”过的正常js。</p>
+<p>以前写页面都是html+JS,现在Reactjs全用JS写，html写在JS里面。由于ReactJS用的virtual DOM。一切也就能合理解释了。据说相比传统的DOM操作速度几乎没影响，但比你用JQ操作应该更快，呵呵。</p>
+<p>virtual DOM到底是个什么东西？<br>这里不作为本篇文章的重点介绍。当然他是ReactJS的核心部分。<br>简单来说就是当数据改变时，ReactJS改变的不是整个Component。而是找和之前组件的变化点来更新。<br>具体参考文档<br><a href="http://facebook.github.io/react/blog/2013/06/05/why-react.html#reactive-updates-are-dead-simple." target="_blank" rel="external">http://facebook.github.io/react/blog/2013/06/05/why-react.html#reactive-updates-are-dead-simple.</a></p>
+<p>接下来讲介绍Flux了。这也是这篇文章的重点。要读懂下面部分首先要对ReactJS稍有概念和了解即可。读懂还不够，要实际操作的话需要有一定webpack基础。我的前一篇博文应该有比较详细的介绍。</p>
+<p>首先说明就是Flux是写ReactJS所需要遵循的一种标准。至少facebook的开发者们认为这是一种非常好的组织代码的架构。</p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/flux-diagram.png" width="90%"></p>
+<p>这张神图是官方无论在哪解释Flux都要用到的。<br>我们就来看图说话吧。<br>首先，这个图有个圈，并且圈中数据是单向流动的。</p>
+<p>其次，这个图左边有两个双向箭头，不知道干嘛用的，呵呵。</p>
+<p>那我们一个个来破这个闷。</p>
+<p>右边那个大的单向箭头圈，说明的是Flux遵循的是一种单向的数据流。</p>
+<p>首先每个ActionCreator模块用于创建action。并传递给相应的Dispatcher。</p>
+<pre><code><span class="tag">receiveAll</span>: <span class="tag">function</span>(rawMessages) {
+    <span class="tag">ChatAppDispatcher</span><span class="class">.dispatch</span>({
+      <span class="attribute">type</span>: ActionTypes.RECEIVE_RAW_MESSAGES,
+      <span class="attribute">rawMessages</span>: rawMessages
+    });
+  }
+</code></pre><p>那Dispatcher在哪接受呢？Dispatcher通过在Store中注册一个回调函数（callback）来接收action。</p>
+<pre><code>MessageStore.dispatchToken = ChatAppDispatcher.register(<span class="function"><span class="keyword">function</span><span class="params">(action)</span></span> {
+
+  switch(<span class="keyword">action</span>.<span class="keyword">type</span>) {
+    <span class="keyword">case</span> ActionTypes.RECEIVE_RAW_MESSAGES:
+          _addMessages(<span class="keyword">action</span>.rawMessages);
+          ChatAppDispatcher.waitFor([ThreadStore.dispatchToken]);
+          _markAllInThreadRead(ThreadStore.getCurrentID());
+          MessageStore.emitChange();
+      break;
+
+    <span class="keyword">default</span>:
+      // <span class="keyword">do</span> nothing
+  }
+
+});
+</code></pre><p>Store拿到从action中携带的数据后，先处理数据，其中可能包含和其他Store的通信。<br>处理完之后非常重要的一点。抛出Store的Change事件。<br>在React Views中，组件componentWillUnmount状态后监听这个事件并处理。setState组件中的数据并且会影响到UI(user interaction)。</p>
+<p>在Store中我刻意忽略了waitFor。这十分十分重要。现在我们来讲讲waitFor。<br>随着应用规模的增长。Store之间也会变得有依赖关系。waitFor就是如他字面意思一样。等它先执行才能执行后面。<br><a href="http://facebook.github.io/flux/docs/dispatcher.html" target="_blank" rel="external">http://facebook.github.io/flux/docs/dispatcher.html</a><br>这是Flux官方解释dispatcher的例子。</p>
+<p>有三个Store，国家，城市，机票价格。这里机票价格只和城市联动。</p>
+<pre><code>CityStore.dispatchToken = flightDispatcher.register(<span class="function"><span class="keyword">function</span><span class="params">(payload)</span> </span>{
+      <span class="keyword">if</span> (payload.actionType === <span class="string">'country-update'</span>) {
+        <span class="comment">// `CountryStore.country` may not be updated.</span>
+        flightDispatcher.waitFor([CountryStore.dispatchToken]);
+        <span class="comment">// `CountryStore.country` is now guaranteed to be updated.</span>
+
+        <span class="comment">// Select the default city for the new country</span>
+        CityStore.city = getDefaultCityForCountry(CountryStore.country);
+      }
+});
+</code></pre><p>这里举个例子，只有当国家改变，注册事件完成后，才能完成后面的根据国家设置默认城市。</p>
+<p>Web API Utils就是一个API和Action Creat之间的桥梁，当Utils取得数据时，会通知Action。而当Action有数据要提交到服务器时也是通过它。</p>
+<p>这样，这个图就解释完了。<br>主要参考了<a href="https://github.com/facebook/flux/tree/master/examples/flux-chat" target="_blank" rel="external">https://github.com/facebook/flux/tree/master/examples/flux-chat</a>。</p>
+<p>再多说几句，关于单向的数据流，这些箭头都是单向的。就是说view其实不能直接影响到Store。而只能是Store影响到View。View中的其他状态更改也还是需要从Store中去取的。</p>
+<h3 id="参考：">参考：</h3><p><a href="http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html" target="_blank" rel="external">Flux: Actions and the Dispatcher</a></p>
+<p><a href="http://segmentfault.com/a/1190000002530862" target="_blank" rel="external">Flux: Actions and the Dispatcher 中文翻译</a></p>
+
+        <p class="last-important-text">如果还有问题可以留言，必定知无不言。</p>
+        <p class="last-important-text">想要搜索历史文章可使用右上角站内搜索。</p>
+        <p class="last-important-text">如果觉得稍微对您有用，请用支付宝轻扫下面捐赠二维码，可适当捐献。</p>
+        <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.png" class="pay-img">
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://joeyzone.github.io/2015/07/21/深入理解ReactJS的Flux单向数据流/" data-id="cicd693yh0005nxuuf81d98b4" class="article-share-link">分享到</a>
+        
+
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+        
+<div class="pagepart clearfix">
+  
+    <a href="/2015/07/21/webpack-初探/" class="alignleft prev" title="webpack 初探">webpack 初探</a>
+  
+    
+</div>
+
+      </footer>
     </div>
   </article>
 
-    
-      </div>
-    
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-深入理解ReactJS的Flux单向数据流" data-title="深入理解ReactJS的Flux单向数据流" data-url="http://joeyzone.github.io/2015/07/21/深入理解ReactJS的Flux单向数据流/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'github'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
   
   
-    </div></section>
-  
-
 
             </div>
           </section>
@@ -190,6 +263,19 @@ npm install -g bakari-builder
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/21/webpack-初探/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">webpack 初探</p>
+      <i class="icon" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     

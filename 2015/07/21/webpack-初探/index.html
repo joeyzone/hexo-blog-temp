@@ -4,24 +4,31 @@
   <meta charset="utf-8">
   <meta name="baidu-site-verification" content="KCpzqK3BrU" />
   
-  <title>commonJS &amp; AMD &amp; CMD | Joey&#39;s Blog</title>
+  <title>webpack 初探 | Joey&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="commonJS &amp;amp; AMD &amp;amp; CMD
-这是一个浅显的入门手册（即使不是前端也能轻易理解）ECMAScript2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖">
+  <meta name="description" content="Webpack 初探以前文章我介绍过commonJS。也比较过AMD和CMD异同。
+前端模块化编程已经有些时日了，只是前端标准不统一，造成现在不兼容的局面。但是webpack等打包工具的出现打破了这一切，让前端也终于可以解放双手了。当然他也兼容AMD。
+Webpack也出自facebook团队。
+安装及使用：webpack可作为一般的全局npm模块安装
+npm install -g webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="commonJS & AMD & CMD">
-<meta property="og:url" content="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/index.html">
+<meta property="og:title" content="webpack 初探">
+<meta property="og:url" content="http://joeyzone.github.io/2015/07/21/webpack-初探/index.html">
 <meta property="og:site_name" content="Joey's Blog">
-<meta property="og:description" content="commonJS &amp;amp; AMD &amp;amp; CMD
-这是一个浅显的入门手册（即使不是前端也能轻易理解）ECMAScript2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖">
-<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg">
-<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/cjs.png">
-<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/flow1.jpg">
-<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/r2.png">
+<meta property="og:description" content="Webpack 初探以前文章我介绍过commonJS。也比较过AMD和CMD异同。
+前端模块化编程已经有些时日了，只是前端标准不统一，造成现在不兼容的局面。但是webpack等打包工具的出现打破了这一切，让前端也终于可以解放双手了。当然他也兼容AMD。
+Webpack也出自facebook团队。
+安装及使用：webpack可作为一般的全局npm模块安装
+npm install -g webpack">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/goros.jpg">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/3444.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="commonJS & AMD & CMD">
-<meta name="twitter:description" content="commonJS &amp;amp; AMD &amp;amp; CMD
-这是一个浅显的入门手册（即使不是前端也能轻易理解）ECMAScript2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖">
+<meta name="twitter:title" content="webpack 初探">
+<meta name="twitter:description" content="Webpack 初探以前文章我介绍过commonJS。也比较过AMD和CMD异同。
+前端模块化编程已经有些时日了，只是前端标准不统一，造成现在不兼容的局面。但是webpack等打包工具的出现打破了这一切，让前端也终于可以解放双手了。当然他也兼容AMD。
+Webpack也出自facebook团队。
+安装及使用：webpack可作为一般的全局npm模块安装
+npm install -g webpack">
   
   
 
@@ -117,7 +124,7 @@ var _hmt = _hmt || [];
             </div>
             <div class="main-body-content">
               
-  <article id="post-commonJS-AMD-CMD-之辩" class="article article-single article-type-post" itemscope itemprop="blogPost">
+  <article id="post-webpack-初探" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
       <!--  -->
       
@@ -125,101 +132,128 @@ var _hmt = _hmt || [];
           
   
     <h1 class="article-title" itemprop="name">
-      commonJS &amp; AMD &amp; CMD
+      webpack 初探
     </h1>
   
 
         </header>
       
       <p class="article-byline">
-        <a href="/2015/07/10/commonJS-AMD-CMD-之辩/" class="article-date">
-  <time datetime="2015-07-10T06:55:42.000Z" itemprop="datePublished">2015-07-10</time>
+        <a href="/2015/07/21/webpack-初探/" class="article-date">
+  <time datetime="2015-07-21T09:59:24.000Z" itemprop="datePublished">2015-07-21</time>
 </a>
       </p>
       <div class="article-entry" itemprop="articleBody">
-        <h1 id="commonJS_&amp;_AMD_&amp;_CMD">commonJS &amp; AMD &amp; CMD</h1><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg" width="90%"></p>
-<h4 id="这是一个浅显的入门手册（即使不是前端也能轻易理解）">这是一个浅显的入门手册（即使不是前端也能轻易理解）</h4><h4 id="ECMAScript">ECMAScript</h4><p>2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖循环的解决方案。对js的模块化编程起到了指导性作用，当然ECMAScript的标准的重要性是不言而喻的。</p>
-<p>但是对于这个标准的出现，引用网友的一句话“只要不是最坏的标准，那就一定比没有标准强”。</p>
-<h3 id="commonJS">commonJS</h3><p>CommonJS是一个目前JavaScript模块化的事实标准，他的出现当然是社区中得先驱大牛努力的结果。正是他的努力使得js模块化的编程让大众所介绍并认识。可以说是他推动了整个ECMAScript标准的制定。<br>目前已发展到CommonJS/1.1。链接<a href="http://www.commonjs.org" target="_blank" rel="external">http://www.commonjs.org</a></p>
-<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/cjs.png"></p>
-<p>就像官方网站的说明：javascript不再仅仅为浏览器适用。在服务器端，随着这几年nodeJS的火热，commonJS标准也得到非常广泛的推广。commonjs的终极目标——提供一个类似Python，Ruby和Java标准库。</p>
-<p>我们先来介绍下什么事前端模块化编程。</p>
-<p>首先我们把模块简单的理解为方法。</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">mod1</span><span class="params">()</span></span>{
-    ...
+        <h2 id="Webpack_初探">Webpack 初探</h2><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/goros.jpg" width="" 95%=""><br>以前文章我介绍过commonJS。也比较过AMD和CMD异同。</p>
+<p>前端模块化编程已经有些时日了，只是前端标准不统一，造成现在不兼容的局面。但是webpack等打包工具的出现打破了这一切，让前端也终于可以解放双手了。当然他也兼容AMD。</p>
+<p>Webpack也出自facebook团队。</p>
+<h3 id="安装及使用：">安装及使用：</h3><p>webpack可作为一般的全局npm模块安装</p>
+<pre><code>npm <span class="keyword">install</span> -g webpack
+</code></pre><p>之后我们可以新建一个目录</p>
+<pre><code>mkdir webpack_<span class="built_in">test</span>
+<span class="built_in">cd</span> webpack_<span class="built_in">test</span>
+touch webpack.config.js
+</code></pre><p>这样，一个简单的环境就搭建起来了。<br>然后打开webpack.config.js文件。复制下面配置</p>
+<pre><code><span class="module"><span class="keyword">module</span>.exports = </span>{
+      entry:[
+    <span class="string">'./app/main.js'</span>
+      ],
+      output: {
+        path: __dirname + <span class="string">'/assets/'</span>,
+            publicPath: <span class="string">"/assets/"</span>,
+        filename: <span class="string">'bundle.js'</span>
+      }
+};
+</code></pre><p>其中entry参数定义了打包的文件入口。数组中文件会按顺序打包。<br>entry数组中所有有文件会打包成bundle.js</p>
+<p>如果写成这样就会分别打包。</p>
+<pre><code><span class="string">entry:</span> {
+<span class="label">    a:</span> <span class="string">"./about/about"</span>,
+<span class="label">    b:</span><span class="string">"./homePage/index"</span>
+},    
+<span class="string">output:</span> {
+<span class="label">    path:</span> __dirname + <span class="string">'/assets/'</span>,
+<span class="label">    publicPath:</span> <span class="string">"/assets/"</span>,
+<span class="label">    filename:</span> <span class="string">"[name].js"</span>,
+<span class="label">    chunkFilename:</span> <span class="string">"[id].js"</span>
 }
-</code></pre><p>这样mod1污染了全局变量</p>
-<p>那我们加个命名空间叫module1。</p>
-<pre><code><span class="keyword">var</span> module1 = <span class="keyword">new</span> <span class="built_in">Object</span>({
-    _count : <span class="number">0</span>,
-    m1 : <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{
-    <span class="comment">//...</span>
-    },
-    m2 : <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{
-    <span class="comment">//...</span>
+</code></pre><p>下面这种写法并没有写成a:”./about/about.js”,他会用正则检测文件名并且用对应的loader来打包。</p>
+<p>Webpack将项目中用到的一切静态资源都视之为模块，Webpack对它们进行统一的管理以及打包发布，其官方主页用下面这张图来说明Webpack的作用：<br><img src="http://7xiqu0.com1.z0.glb.clouddn.com/3444.jpg" width="95%"></p>
+<h3 id="code-splitting">code-splitting</h3><p>其实我上面说的就是代码分离。</p>
+<p>翻译一段官网code-splitting的第一段原文。</p>
+<p>对于一个大的web应用把所有代码放到一个文件中是很低效的。特别是如果有些代码块只是在特定环境下需要。<br>webpack有一个特性就是能分离你的代码库成为按需加载的‘chunks’。<br>一些其他打包工具称之为’layers’,’rollups’,’fragments’,这个特性被称为‘代码分离’。</p>
+<p>这是个可选的特性，你可以在你代码库定义分离点。webpack会管理其依赖，输出文件和运行之类的。</p>
+<p>澄清一个误解：代码分离不只是关于挑出公共代码成文共享的chunk。更为重要的是分离代码可以用来分离成按需加载的chunk。这能保证下载很少的代码并且是只有当应用需求时才下载。</p>
+<p>Defining a split point</p>
+<h5 id="require-ensure_(CommonJs)">require.ensure (CommonJs)</h5><pre><code>require.<span class="function"><span class="title">ensure</span><span class="params">(dependencies, callback)</span></span>
+</code></pre><p>This a proposal for the specification of the “require.ensure” method. (Formerly “require.async”.)<br>这里是commonJS的最新标准的写法，可参考wiki上<a href="http://wiki.commonjs.org/wiki/Modules/Async/A" target="_blank" rel="external">http://wiki.commonjs.org/wiki/Modules/Async/A</a></p>
+<h5 id="require_(AMD)">require (AMD)</h5><p>The AMD spec defines an asynchronous require method with this definition:</p>
+<pre><code><span class="function"><span class="title">require</span><span class="params">(dependencies, callback)</span></span>
+</code></pre><p>这里我们上一篇文章有介绍，requireJS-2.0之后为了解决按需执行的bug而加的一个解决方案。</p>
+<p>简单来说就是webpack希望你用模块化的编程思想，把代码分成多个模块。反正webpack会帮你处理一切问题，webpack会把当前文件和所有依赖也打包进chunk。甚至css，jpg都给你打包进chunk。让你放心好了。这样编程才是最高效的。</p>
+<pre><code><span class="module"><span class="keyword">module</span>.exports = </span>{
+      entry: {
+        app: <span class="string">"./app.js"</span>,
+        vendor: [<span class="string">"jquery"</span>, <span class="string">"underscore"</span>, ...],
+      },
+      output: {
+        filename: <span class="string">"bundle.js"</span>
+      },
+      plugins: [
+        <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="comment">/* chunkName= */</span><span class="string">"vendor"</span>, <span class="comment">/* filename= */</span><span class="string">"vendor.bundle.js"</span>)
+      ]
+};
+</code></pre><p>这样会移除所有app这个chunk中的在vendor中有的模块，也就是说，如果app原先有jquery和underscore模块，那会被移除并且转移到vendor.bundle.js中。</p>
+<p>其实主要是理解CommonsChunkPlugin这个插件是有什么作用。</p>
+<pre><code><span class="collection">{
+    entry: <span class="collection">{ a: <span class="string">"./a"</span>, b: <span class="string">"./b"</span> }</span>,
+    output: <span class="collection">{ filename: <span class="string">"[name].js"</span> }</span>,
+    plugins: <span class="collection">[ new webpack.optimize.CommonsChunkPlugin<span class="list">(<span class="string">"init.js"</span>)</span> ]</span>
+}</span>
+</code></pre><p>像这样，没有指明特定的entry trunk则表示所有entry中的common部分打包到init.js。</p>
+<h3 id="css">css</h3><p>普通的css-loader</p>
+<pre><code>npm install style-loader css-loader --<span class="built_in">save</span>-<span class="built_in">dev</span>
+</code></pre><p>在配置中加上</p>
+<pre><code><span class="string">loaders:</span> [
+    { <span class="string">test:</span> <span class="regexp">/\.css$/</span>, <span class="string">loader:</span> <span class="string">"style-loader!css-loader"</span> }
+]    
+</code></pre><p>并且在代码中加上</p>
+<pre><code><span class="built_in">require</span>(<span class="string">"./stylesheet.css"</span>);
+</code></pre><p>这样就是把css当做普通模块打包进了trunk中</p>
+<pre><code><span class="regexp">//</span> <span class="built_in">module</span>
+exports.push([<span class="built_in">module</span>.id, <span class="string">"body{\n    background-color: #000;\n}"</span>, <span class="string">""</span>]);
+</code></pre><p>但是有时我们还是觉得分离出单独的css更符合项目规范。</p>
+<p>这样你就需要ExtractTextPlugin这个插件了。</p>
+<pre><code>plugins: [
+    new <span class="function"><span class="title">ExtractTextPlugin</span><span class="params">(<span class="string">"[name].css"</span>)</span></span>
+]
+</code></pre><p>在loader中这样写就可以了</p>
+<pre><code>loader: ExtractTextPlugin.<span class="function"><span class="title">extract</span><span class="params">(<span class="string">"style-loader"</span>, <span class="string">"css-loader"</span>)</span></span>
+</code></pre><p>也可以有common.css</p>
+<pre><code>new webpack<span class="class">.optimize</span><span class="class">.CommonsChunkPlugin</span>(<span class="string">"commons"</span>, <span class="string">"commons.js"</span>)
+</code></pre><h3 id="loaders">loaders</h3><p>loaders负责转化你应用中源文件,首先你得安装所需的loader</p>
+<pre><code>$ npm <span class="operator"><span class="keyword">install</span> xxx-loader <span class="comment">--save</span></span>
+</code></pre><p>You can bind loaders to a RegExp via configuration:</p>
+<pre><code>{
+    <span class="attribute">module</span>: {
+        <span class="attribute">loaders</span>: [
+            { <span class="attribute">test</span>: <span class="regexp">/\.jade$/</span>, <span class="attribute">loader</span>: <span class="string">"jade"</span> },
+            <span class="regexp">//</span> =&gt; <span class="string">"jade"</span> loader <span class="keyword">is</span> used <span class="keyword">for</span> <span class="string">".jade"</span> files
+
+            { <span class="attribute">test</span>: <span class="regexp">/\.css$/</span>, <span class="attribute">loader</span>: <span class="string">"style!css"</span> },
+            <span class="regexp">//</span> =&gt; <span class="string">"style"</span> <span class="keyword">and</span> <span class="string">"css"</span> loader <span class="keyword">is</span> used <span class="keyword">for</span> <span class="string">".css"</span> files
+            <span class="regexp">//</span> Alternative <span class="attribute">syntax</span>:
+            { <span class="attribute">test</span>: <span class="regexp">/\.css$/</span>, <span class="attribute">loaders</span>: [<span class="string">"style"</span>, <span class="string">"css"</span>] },
+        ]
     }
-});
-</code></pre><p>而这种方式暴露了_count。</p>
-<p>其实最简单也是最常用的是用立即函数的形式</p>
-<pre><code><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-    <span class="keyword">var</span> _count = <span class="number">0</span>;
-    <span class="keyword">var</span> m1 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-        <span class="comment">//...</span>
-    };
-    <span class="keyword">var</span> m2 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-        <span class="comment">//...</span>
-    };
-    <span class="keyword">return</span> {
-        m1 : m1,
-        m2 : m2
-    };
-})();
-</code></pre><p>这个会带来问题，因为这样的写法肯定不是最优的，还有很多语法糖的东西可以增加，比如全局变量的引入，放大模式等。commonJS产生了，遵从这套标准，意味着任何人写的模块我都能随便引用。再不会有语法糖产生的分歧。</p>
-<p>commonJS到底说了些什么呢？其实他只是定义了自己的一套书写模块的规则，<br>简单来说。比如require用来引入模块。<br>export用来导出模块公用部分。当然这些只是白话的说明，<br>具体请参照wiki上的说明（<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">http://wiki.commonjs.org/wiki/CommonJS</a>）。</p>
-<p>直到现在，我还在讲CommonJS。这是个服务器端的标准，因为服务器端语言如果没有一套标准，就像写通信没有socket标准。写PHP没有框架是一样的。因此为了推动javascript的服务器端进展。不得不有一套commonJS标准。</p>
-<p>但是浏览器端由于偏见或者其他原因，认为网页程序的复杂性有限。模块化有没有都一样。因此它的推广比服务器端node慢很多。<br>但这完全只能算偏见。</p>
-<p>浏览器端也需要模块化，但是一个主要的问题你猜是什么。</p>
-<pre><code><span class="keyword">var</span> md5 = <span class="built_in">require</span>(<span class="string">'MD5'</span>);
-<span class="keyword">var</span> encode_pwd = md5($.cookie(<span class="string">'password'</span>));
-</code></pre><p>服务器端代码就在服务器端，也就是在服务器的内存里。而前端代码放在服务器端，需要http请求才能拿到。所以我才说commonJS适用服务器端。因为代码的执行是同步的。服务器端只需等待代码从内存中返回，当然不用做异步。但是浏览器端如果也这样的话当然可以，但是这样就阻塞了后续代码的执行。因为要等待js代码从服务器端返回。</p>
-<p>那么浏览器端最优的处理方案就是js的异步加载（由于现在代码流行打包all-in-one。看起来已经不重要，甚至说被抛弃）。这也是为什么前端模块化的一个重要原因，在此之前，前端js代码都是按照书写的顺序依次执行。当然，浏览器并不是按顺序下载的js,下载仍然是并行的，这里可能有点难理解。</p>
-<p>那我在这画张图解释下——下载和加载的区别，虽然在所有人都热衷打包代码的大趋势下这些已经不再重要。（为什么要打包代码呢？呵呵）</p>
-<p>当然是要减少请求啦。</p>
-<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/flow1.jpg" width="80%"></p>
-<p>首先，在未打包的情况下，不用requireJS等模块加载器，你会怎么写他们的顺序。</p>
-<p>如果这些js文件有的很大，有的很小呢？相信大部分人已经理解，这里我不多赘述模块加载器的异步加载功效。</p>
-<h3 id="AMD&amp;CMD">AMD&amp;CMD</h3><h4 id="AMD">AMD</h4><p>浏览器的模块化先驱requireJS是很有代表性的。他提出了参考commonJS的新的AMD标准。</p>
-<h4 id="CMD">CMD</h4><p>这个就要说到淘宝的“玉伯”一直以来对requireJS的鄙视，他坚持最大程度的沿用commonJS语法并遵从commonJS标准。自己弄了个seaJS，知乎上两种标准开始了撕逼大战。</p>
-<p>两者的共同点就是：<br>都参照了commonJS标准<br>都用于前端模块的异步加载<br>入口都只有一个js文件<br>两者不同点：<br>requireJS属于依赖前置。seaJS属于依赖就近，也就是可以把依赖写在代码中任意一行。<br>requireJS是先执行依赖。seaJS是后（根据require的位置）执行依赖，这里要弄清加载和执行是两个不同的动作，加载都是异步加载。</p>
-<p>这是seaJS的写法。这段代码更贴近commonJS的写法。</p>
-<pre><code>define(<span class="reserved">function</span>(<span class="built_in">require</span>, exports, <span class="built_in">module</span>) { 
-    <span class="reserved">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);
-    a.doSomething();
-    <span class="reserved">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);
-    b.doSomething();
-})
-</code></pre><p>这是requireJS的写法。</p>
-<pre><code>define([<span class="string">'./a'</span>,<span class="string">'./b'</span>],<span class="function"><span class="keyword">function</span><span class="params">(a,b)</span></span>{ 
-    a.doSomething();
-    b.doSomething();
-})
-</code></pre><p>虽然看起来是写法上的争执，但是执行上是完全两码事，seaJS推崇按需执行，而requireJS推崇先执行。这点被“玉伯”喷的很惨。原因就是有的模块是“硬依赖”，也就是必须的依赖。还有一类是“软依赖”，比如：</p>
-<pre><code><span class="keyword">if</span>(isLogin){
-    <span class="reserved">var</span> lgoin_show = <span class="built_in">require</span>(<span class="string">'loginShow'</span>);
-    lgoin_show.init();
 }
-</code></pre><p>requireJS刚开始1.0版本时对此束手无策，只能说不管你需不需要，先执行再说。</p>
-<p>但是有一位少年<a href="https://github.com/jrburke/requirejs/issues/183" target="_blank" rel="external">https://github.com/jrburke/requirejs/issues/183</a>在git上提出这个issue。<br>一语惊醒梦中人。requireJS作者答应他在2.0正式版的时候fix it。</p>
-<p>于是在requireJS-2.0的更新文档(<a href="https://github.com/jrburke/requirejs/wiki/Upgrading-to-RequireJS-2.0" target="_blank" rel="external">https://github.com/jrburke/requirejs/wiki/Upgrading-to-RequireJS-2.0</a>)中，我们看到了万众期待的</p>
-<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/r2.png"></p>
-<pre><code><span class="keyword">if</span>(isLogin){
-    <span class="built_in">require</span>([<span class="string">'loginShow'</span>],<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-        loginShowMod.init();
-    })
-}
-</code></pre><p>“玉伯”仍然硬着头皮也要上。说requireJS是有明显bug,而seaJS是无明显bug的。<br>呵呵，requireJS社区和用户都不知道是seaJS多少倍，文档也丰富得多。明显bug真的是臆想吧。</p>
-<p>要说到底孰优孰劣，我还是看好requireJS。<br>首先，我们都知道“事务的原子性”，<br>rjs先执行的方式在模块内部错误就能得到处理，<br>而seaJS则不然。</p>
-<p>其次，对于习惯了异步加载的同学，会奇怪为啥seaJS中一旦require某个模块，就立马有了呢？<br>这不是同步了吗？<br>其实是seaJS为了达到同步的现象牺牲了部分性能来检测模块中的require字段预先加载好了。</p>
+</code></pre><p>list loader <a href="http://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="external">http://webpack.github.io/docs/list-of-loaders.html</a></p>
+<h3 id="plugins">plugins</h3><p>plugin提供了更丰富的打包功能，这里我只介绍常用的几个。<a href="http://webpack.github.io/docs/list-of-plugins.html" target="_blank" rel="external">http://webpack.github.io/docs/list-of-plugins.html</a><br>CommonsChunkPlugin先前就介绍，这里就不多介绍了。这个我认为是必须的。<br>UglifyJsPlugin 这个不用多介绍了，压缩js的。用法就是new webpack.optimize.UglifyJsPlugin([options])，<br>ExtractTextPlugin 之前css中已经有介绍。</p>
+<h3 id="tools">tools</h3><p>你可以用</p>
+<pre><code>webpack
+</code></pre><p>命令生成打包文件，但是如果只是想调试的话，直接用</p>
+<pre><code>webpack-dev-<span class="keyword">server</span>
+</code></pre><p>他会启动一个node服务器，并且监听文件的变化生成虚拟的打包文件。并且默认hot mode。秒杀react-hot-loader</p>
+<p>当然你也可以在gulp或者grunt中用webpack。更多功能可以参考官网文档<a href="http://webpack.github.io/docs/" target="_blank" rel="external">http://webpack.github.io/docs/</a></p>
 
         <p class="last-important-text">如果还有问题可以留言，必定知无不言。</p>
         <p class="last-important-text">想要搜索历史文章可使用右上角站内搜索。</p>
@@ -227,7 +261,7 @@ var _hmt = _hmt || [];
         <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.png" class="pay-img">
       </div>
       <footer class="article-footer">
-        <a data-url="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/" data-id="cicd693za000gnxuupwlq4w6o" class="article-share-link">分享到</a>
+        <a data-url="http://joeyzone.github.io/2015/07/21/webpack-初探/" data-id="cicd693z30008nxuuxo75cgjq" class="article-share-link">分享到</a>
         
 
         
@@ -236,10 +270,10 @@ var _hmt = _hmt || [];
         
 <div class="pagepart clearfix">
   
-    <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="alignleft prev" title="Two-way data binding 数据双向绑定">Two-way data binding 数据双向绑定</a>
+    <a href="/2015/07/10/commonJS-AMD-CMD-之辩/" class="alignleft prev" title="commonJS &amp; AMD &amp; CMD">commonJS &amp; AMD &amp; CMD</a>
   
   
-    <a href="/2015/07/21/webpack-初探/" class="alignright next" title="webpack 初探">webpack 初探</a>
+    <a href="/2015/07/21/深入理解ReactJS的Flux单向数据流/" class="alignright next" title="深入理解ReactJS的Flux单向数据流">深入理解ReactJS的Flux单向数据流</a>
     
 </div>
 
@@ -250,7 +284,7 @@ var _hmt = _hmt || [];
   
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-commonJS-AMD-CMD-之辩" data-title="commonJS &amp; AMD &amp; CMD" data-url="http://joeyzone.github.io/2015/07/10/commonJS-AMD-CMD-之辩/"></div>
+    <div class="ds-thread" data-thread-key="post-webpack-初探" data-title="webpack 初探" data-url="http://joeyzone.github.io/2015/07/21/webpack-初探/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -293,20 +327,20 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/2015/07/21/webpack-初探/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/07/21/深入理解ReactJS的Flux单向数据流/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <p class="article-nav-title">
         
-          webpack 初探
+          深入理解ReactJS的Flux单向数据流
         
       </p>
       <i class="icon" id="icon-chevron-right"></i>
     </a>
   
   
-    <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/07/10/commonJS-AMD-CMD-之辩/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <p class="article-nav-title">Two-way data binding 数据双向绑定</p>
+      <p class="article-nav-title">commonJS &amp; AMD &amp; CMD</p>
       <i class="icon" id="icon-chevron-left"></i>
     </a>
   

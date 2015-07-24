@@ -4,7 +4,7 @@
   <subtitle><![CDATA[my codeing road]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://joeyzone.github.io/"/>
-  <updated>2015-07-14T07:31:30.000Z</updated>
+  <updated>2015-07-21T10:01:32.000Z</updated>
   <id>http://joeyzone.github.io/</id>
   
   <author>
@@ -13,6 +13,206 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[深入理解ReactJS的Flux单向数据流]]></title>
+    <link href="http://joeyzone.github.io/2015/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ReactJS%E7%9A%84Flux%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81/"/>
+    <id>http://joeyzone.github.io/2015/07/21/深入理解ReactJS的Flux单向数据流/</id>
+    <published>2015-07-21T09:59:43.000Z</published>
+    <updated>2015-07-21T10:01:32.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="深入理解ReactJS的Flux单向数据流">深入理解ReactJS的Flux单向数据流</h2><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/720.jpg" width="100%"></p>
+<h3 id="最近看了些reactJS，想要总结一下。">最近看了些reactJS，想要总结一下。</h3><p>对ReactJS完全不了解的可以参考下阮一峰的博文，入门ReactJS<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/03/react.html</a></p>
+<p>reactJS和Flux是什么关系呢？</p>
+<p>其实说来reactJS算是一种新语言了，叫做JSX。<br>他只不过用了一个一个JSXTransformer的东西把JSX”编译”成了大家都认识的js。<br>当然这种东西线上是不会用的。线上用的是”编译”过的正常js。</p>
+<p>以前写页面都是html+JS,现在Reactjs全用JS写，html写在JS里面。由于ReactJS用的virtual DOM。一切也就能合理解释了。据说相比传统的DOM操作速度几乎没影响，但比你用JQ操作应该更快，呵呵。</p>
+<p>virtual DOM到底是个什么东西？<br>这里不作为本篇文章的重点介绍。当然他是ReactJS的核心部分。<br>简单来说就是当数据改变时，ReactJS改变的不是整个Component。而是找和之前组件的变化点来更新。<br>具体参考文档<br><a href="http://facebook.github.io/react/blog/2013/06/05/why-react.html#reactive-updates-are-dead-simple." target="_blank" rel="external">http://facebook.github.io/react/blog/2013/06/05/why-react.html#reactive-updates-are-dead-simple.</a></p>
+<p>接下来讲介绍Flux了。这也是这篇文章的重点。要读懂下面部分首先要对ReactJS稍有概念和了解即可。读懂还不够，要实际操作的话需要有一定webpack基础。我的前一篇博文应该有比较详细的介绍。</p>
+<p>首先说明就是Flux是写ReactJS所需要遵循的一种标准。至少facebook的开发者们认为这是一种非常好的组织代码的架构。</p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/flux-diagram.png" width="90%"></p>
+<p>这张神图是官方无论在哪解释Flux都要用到的。<br>我们就来看图说话吧。<br>首先，这个图有个圈，并且圈中数据是单向流动的。</p>
+<p>其次，这个图左边有两个双向箭头，不知道干嘛用的，呵呵。</p>
+<p>那我们一个个来破这个闷。</p>
+<p>右边那个大的单向箭头圈，说明的是Flux遵循的是一种单向的数据流。</p>
+<p>首先每个ActionCreator模块用于创建action。并传递给相应的Dispatcher。</p>
+<pre><code><span class="tag">receiveAll</span>: <span class="tag">function</span>(rawMessages) {
+    <span class="tag">ChatAppDispatcher</span><span class="class">.dispatch</span>({
+      <span class="attribute">type</span>: ActionTypes.RECEIVE_RAW_MESSAGES,
+      <span class="attribute">rawMessages</span>: rawMessages
+    });
+  }
+</code></pre><p>那Dispatcher在哪接受呢？Dispatcher通过在Store中注册一个回调函数（callback）来接收action。</p>
+<pre><code>MessageStore.dispatchToken = ChatAppDispatcher.register(<span class="function"><span class="keyword">function</span><span class="params">(action)</span></span> {
+
+  switch(<span class="keyword">action</span>.<span class="keyword">type</span>) {
+    <span class="keyword">case</span> ActionTypes.RECEIVE_RAW_MESSAGES:
+          _addMessages(<span class="keyword">action</span>.rawMessages);
+          ChatAppDispatcher.waitFor([ThreadStore.dispatchToken]);
+          _markAllInThreadRead(ThreadStore.getCurrentID());
+          MessageStore.emitChange();
+      break;
+
+    <span class="keyword">default</span>:
+      // <span class="keyword">do</span> nothing
+  }
+
+});
+</code></pre><p>Store拿到从action中携带的数据后，先处理数据，其中可能包含和其他Store的通信。<br>处理完之后非常重要的一点。抛出Store的Change事件。<br>在React Views中，组件componentWillUnmount状态后监听这个事件并处理。setState组件中的数据并且会影响到UI(user interaction)。</p>
+<p>在Store中我刻意忽略了waitFor。这十分十分重要。现在我们来讲讲waitFor。<br>随着应用规模的增长。Store之间也会变得有依赖关系。waitFor就是如他字面意思一样。等它先执行才能执行后面。<br><a href="http://facebook.github.io/flux/docs/dispatcher.html" target="_blank" rel="external">http://facebook.github.io/flux/docs/dispatcher.html</a><br>这是Flux官方解释dispatcher的例子。</p>
+<p>有三个Store，国家，城市，机票价格。这里机票价格只和城市联动。</p>
+<pre><code>CityStore.dispatchToken = flightDispatcher.register(<span class="function"><span class="keyword">function</span><span class="params">(payload)</span> </span>{
+      <span class="keyword">if</span> (payload.actionType === <span class="string">'country-update'</span>) {
+        <span class="comment">// `CountryStore.country` may not be updated.</span>
+        flightDispatcher.waitFor([CountryStore.dispatchToken]);
+        <span class="comment">// `CountryStore.country` is now guaranteed to be updated.</span>
+
+        <span class="comment">// Select the default city for the new country</span>
+        CityStore.city = getDefaultCityForCountry(CountryStore.country);
+      }
+});
+</code></pre><p>这里举个例子，只有当国家改变，注册事件完成后，才能完成后面的根据国家设置默认城市。</p>
+<p>Web API Utils就是一个API和Action Creat之间的桥梁，当Utils取得数据时，会通知Action。而当Action有数据要提交到服务器时也是通过它。</p>
+<p>这样，这个图就解释完了。<br>主要参考了<a href="https://github.com/facebook/flux/tree/master/examples/flux-chat" target="_blank" rel="external">https://github.com/facebook/flux/tree/master/examples/flux-chat</a>。</p>
+<p>再多说几句，关于单向的数据流，这些箭头都是单向的。就是说view其实不能直接影响到Store。而只能是Store影响到View。View中的其他状态更改也还是需要从Store中去取的。</p>
+<h3 id="参考：">参考：</h3><p><a href="http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html" target="_blank" rel="external">Flux: Actions and the Dispatcher</a></p>
+<p><a href="http://segmentfault.com/a/1190000002530862" target="_blank" rel="external">Flux: Actions and the Dispatcher 中文翻译</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="深入理解ReactJS的Flux单向数据流">深入理解ReactJS的Flux单向数据流</h2><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/720.jpg" width="100%"></p>
+<h3 i]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://joeyzone.github.io/tags/javascript/"/>
+    
+      <category term="javascript-code" scheme="http://joeyzone.github.io/categories/javascript-code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[webpack 初探]]></title>
+    <link href="http://joeyzone.github.io/2015/07/21/webpack-%E5%88%9D%E6%8E%A2/"/>
+    <id>http://joeyzone.github.io/2015/07/21/webpack-初探/</id>
+    <published>2015-07-21T09:59:24.000Z</published>
+    <updated>2015-07-21T10:00:51.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Webpack_初探">Webpack 初探</h2><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/goros.jpg" width="" 95%=""><br>以前文章我介绍过commonJS。也比较过AMD和CMD异同。</p>
+<p>前端模块化编程已经有些时日了，只是前端标准不统一，造成现在不兼容的局面。但是webpack等打包工具的出现打破了这一切，让前端也终于可以解放双手了。当然他也兼容AMD。</p>
+<p>Webpack也出自facebook团队。</p>
+<h3 id="安装及使用：">安装及使用：</h3><p>webpack可作为一般的全局npm模块安装</p>
+<pre><code>npm <span class="keyword">install</span> -g webpack
+</code></pre><p>之后我们可以新建一个目录</p>
+<pre><code>mkdir webpack_<span class="built_in">test</span>
+<span class="built_in">cd</span> webpack_<span class="built_in">test</span>
+touch webpack.config.js
+</code></pre><p>这样，一个简单的环境就搭建起来了。<br>然后打开webpack.config.js文件。复制下面配置</p>
+<pre><code><span class="module"><span class="keyword">module</span>.exports = </span>{
+      entry:[
+    <span class="string">'./app/main.js'</span>
+      ],
+      output: {
+        path: __dirname + <span class="string">'/assets/'</span>,
+            publicPath: <span class="string">"/assets/"</span>,
+        filename: <span class="string">'bundle.js'</span>
+      }
+};
+</code></pre><p>其中entry参数定义了打包的文件入口。数组中文件会按顺序打包。<br>entry数组中所有有文件会打包成bundle.js</p>
+<p>如果写成这样就会分别打包。</p>
+<pre><code><span class="string">entry:</span> {
+<span class="label">    a:</span> <span class="string">"./about/about"</span>,
+<span class="label">    b:</span><span class="string">"./homePage/index"</span>
+},    
+<span class="string">output:</span> {
+<span class="label">    path:</span> __dirname + <span class="string">'/assets/'</span>,
+<span class="label">    publicPath:</span> <span class="string">"/assets/"</span>,
+<span class="label">    filename:</span> <span class="string">"[name].js"</span>,
+<span class="label">    chunkFilename:</span> <span class="string">"[id].js"</span>
+}
+</code></pre><p>下面这种写法并没有写成a:”./about/about.js”,他会用正则检测文件名并且用对应的loader来打包。</p>
+<p>Webpack将项目中用到的一切静态资源都视之为模块，Webpack对它们进行统一的管理以及打包发布，其官方主页用下面这张图来说明Webpack的作用：<br><img src="http://7xiqu0.com1.z0.glb.clouddn.com/3444.jpg" width="95%"></p>
+<h3 id="code-splitting">code-splitting</h3><p>其实我上面说的就是代码分离。</p>
+<p>翻译一段官网code-splitting的第一段原文。</p>
+<p>对于一个大的web应用把所有代码放到一个文件中是很低效的。特别是如果有些代码块只是在特定环境下需要。<br>webpack有一个特性就是能分离你的代码库成为按需加载的‘chunks’。<br>一些其他打包工具称之为’layers’,’rollups’,’fragments’,这个特性被称为‘代码分离’。</p>
+<p>这是个可选的特性，你可以在你代码库定义分离点。webpack会管理其依赖，输出文件和运行之类的。</p>
+<p>澄清一个误解：代码分离不只是关于挑出公共代码成文共享的chunk。更为重要的是分离代码可以用来分离成按需加载的chunk。这能保证下载很少的代码并且是只有当应用需求时才下载。</p>
+<p>Defining a split point</p>
+<h5 id="require-ensure_(CommonJs)">require.ensure (CommonJs)</h5><pre><code>require.<span class="function"><span class="title">ensure</span><span class="params">(dependencies, callback)</span></span>
+</code></pre><p>This a proposal for the specification of the “require.ensure” method. (Formerly “require.async”.)<br>这里是commonJS的最新标准的写法，可参考wiki上<a href="http://wiki.commonjs.org/wiki/Modules/Async/A" target="_blank" rel="external">http://wiki.commonjs.org/wiki/Modules/Async/A</a></p>
+<h5 id="require_(AMD)">require (AMD)</h5><p>The AMD spec defines an asynchronous require method with this definition:</p>
+<pre><code><span class="function"><span class="title">require</span><span class="params">(dependencies, callback)</span></span>
+</code></pre><p>这里我们上一篇文章有介绍，requireJS-2.0之后为了解决按需执行的bug而加的一个解决方案。</p>
+<p>简单来说就是webpack希望你用模块化的编程思想，把代码分成多个模块。反正webpack会帮你处理一切问题，webpack会把当前文件和所有依赖也打包进chunk。甚至css，jpg都给你打包进chunk。让你放心好了。这样编程才是最高效的。</p>
+<pre><code><span class="module"><span class="keyword">module</span>.exports = </span>{
+      entry: {
+        app: <span class="string">"./app.js"</span>,
+        vendor: [<span class="string">"jquery"</span>, <span class="string">"underscore"</span>, ...],
+      },
+      output: {
+        filename: <span class="string">"bundle.js"</span>
+      },
+      plugins: [
+        <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="comment">/* chunkName= */</span><span class="string">"vendor"</span>, <span class="comment">/* filename= */</span><span class="string">"vendor.bundle.js"</span>)
+      ]
+};
+</code></pre><p>这样会移除所有app这个chunk中的在vendor中有的模块，也就是说，如果app原先有jquery和underscore模块，那会被移除并且转移到vendor.bundle.js中。</p>
+<p>其实主要是理解CommonsChunkPlugin这个插件是有什么作用。</p>
+<pre><code><span class="collection">{
+    entry: <span class="collection">{ a: <span class="string">"./a"</span>, b: <span class="string">"./b"</span> }</span>,
+    output: <span class="collection">{ filename: <span class="string">"[name].js"</span> }</span>,
+    plugins: <span class="collection">[ new webpack.optimize.CommonsChunkPlugin<span class="list">(<span class="string">"init.js"</span>)</span> ]</span>
+}</span>
+</code></pre><p>像这样，没有指明特定的entry trunk则表示所有entry中的common部分打包到init.js。</p>
+<h3 id="css">css</h3><p>普通的css-loader</p>
+<pre><code>npm install style-loader css-loader --<span class="built_in">save</span>-<span class="built_in">dev</span>
+</code></pre><p>在配置中加上</p>
+<pre><code><span class="string">loaders:</span> [
+    { <span class="string">test:</span> <span class="regexp">/\.css$/</span>, <span class="string">loader:</span> <span class="string">"style-loader!css-loader"</span> }
+]    
+</code></pre><p>并且在代码中加上</p>
+<pre><code><span class="built_in">require</span>(<span class="string">"./stylesheet.css"</span>);
+</code></pre><p>这样就是把css当做普通模块打包进了trunk中</p>
+<pre><code><span class="regexp">//</span> <span class="built_in">module</span>
+exports.push([<span class="built_in">module</span>.id, <span class="string">"body{\n    background-color: #000;\n}"</span>, <span class="string">""</span>]);
+</code></pre><p>但是有时我们还是觉得分离出单独的css更符合项目规范。</p>
+<p>这样你就需要ExtractTextPlugin这个插件了。</p>
+<pre><code>plugins: [
+    new <span class="function"><span class="title">ExtractTextPlugin</span><span class="params">(<span class="string">"[name].css"</span>)</span></span>
+]
+</code></pre><p>在loader中这样写就可以了</p>
+<pre><code>loader: ExtractTextPlugin.<span class="function"><span class="title">extract</span><span class="params">(<span class="string">"style-loader"</span>, <span class="string">"css-loader"</span>)</span></span>
+</code></pre><p>也可以有common.css</p>
+<pre><code>new webpack<span class="class">.optimize</span><span class="class">.CommonsChunkPlugin</span>(<span class="string">"commons"</span>, <span class="string">"commons.js"</span>)
+</code></pre><h3 id="loaders">loaders</h3><p>loaders负责转化你应用中源文件,首先你得安装所需的loader</p>
+<pre><code>$ npm <span class="operator"><span class="keyword">install</span> xxx-loader <span class="comment">--save</span></span>
+</code></pre><p>You can bind loaders to a RegExp via configuration:</p>
+<pre><code>{
+    <span class="attribute">module</span>: {
+        <span class="attribute">loaders</span>: [
+            { <span class="attribute">test</span>: <span class="regexp">/\.jade$/</span>, <span class="attribute">loader</span>: <span class="string">"jade"</span> },
+            <span class="regexp">//</span> =&gt; <span class="string">"jade"</span> loader <span class="keyword">is</span> used <span class="keyword">for</span> <span class="string">".jade"</span> files
+
+            { <span class="attribute">test</span>: <span class="regexp">/\.css$/</span>, <span class="attribute">loader</span>: <span class="string">"style!css"</span> },
+            <span class="regexp">//</span> =&gt; <span class="string">"style"</span> <span class="keyword">and</span> <span class="string">"css"</span> loader <span class="keyword">is</span> used <span class="keyword">for</span> <span class="string">".css"</span> files
+            <span class="regexp">//</span> Alternative <span class="attribute">syntax</span>:
+            { <span class="attribute">test</span>: <span class="regexp">/\.css$/</span>, <span class="attribute">loaders</span>: [<span class="string">"style"</span>, <span class="string">"css"</span>] },
+        ]
+    }
+}
+</code></pre><p>list loader <a href="http://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="external">http://webpack.github.io/docs/list-of-loaders.html</a></p>
+<h3 id="plugins">plugins</h3><p>plugin提供了更丰富的打包功能，这里我只介绍常用的几个。<a href="http://webpack.github.io/docs/list-of-plugins.html" target="_blank" rel="external">http://webpack.github.io/docs/list-of-plugins.html</a><br>CommonsChunkPlugin先前就介绍，这里就不多介绍了。这个我认为是必须的。<br>UglifyJsPlugin 这个不用多介绍了，压缩js的。用法就是new webpack.optimize.UglifyJsPlugin([options])，<br>ExtractTextPlugin 之前css中已经有介绍。</p>
+<h3 id="tools">tools</h3><p>你可以用</p>
+<pre><code>webpack
+</code></pre><p>命令生成打包文件，但是如果只是想调试的话，直接用</p>
+<pre><code>webpack-dev-<span class="keyword">server</span>
+</code></pre><p>他会启动一个node服务器，并且监听文件的变化生成虚拟的打包文件。并且默认hot mode。秒杀react-hot-loader</p>
+<p>当然你也可以在gulp或者grunt中用webpack。更多功能可以参考官网文档<a href="http://webpack.github.io/docs/" target="_blank" rel="external">http://webpack.github.io/docs/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Webpack_初探">Webpack 初探</h2><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/goros.jpg" width="" 95%=""><br>以前文章我介绍过commonJS。也比较过AM]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://joeyzone.github.io/tags/javascript/"/>
+    
+      <category term="javascript-code" scheme="http://joeyzone.github.io/categories/javascript-code/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[commonJS & AMD & CMD]]></title>
