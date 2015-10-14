@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://joeyzone.github.io/2015/10/14/nodeJS%E6%B5%81%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2015-10-14T07:17:39.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joeyzone.github.io/2015/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ReactJS%E7%9A%84Flux%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81/</loc>
     <lastmod>2015-07-21T10:01:32.000Z</lastmod>
   </url>

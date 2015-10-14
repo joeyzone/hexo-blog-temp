@@ -4,48 +4,25 @@
   <meta charset="utf-8">
   <meta name="baidu-site-verification" content="KCpzqK3BrU" />
   
-  <title>mizhe code freamwork instuction | Joey&#39;s Blog</title>
+  <title>nodeJS流的理解 | Joey&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="米折框架代码说明书文章结尾有简单代码规范可参考
-环境配置
-首先在本机安装nodejs及npm
-安装完成后运行
-npm install -g bakari-builder
-
-从svn下载最新项目代码 svn地址 : http://svn.mizhe.com/repos/mizhe/trunk
-
-进入项目根目录如：cd D://mizhe
-执行bakari命令
-//此命令用来生成测试环境代码及线上压缩">
+  <meta name="description" content="流是一个抽象接口，被 Node 中的很多对象所实现。比如对一个 HTTP 服务器的请求是一个流，stdout 也是一个流。流是可读、可写或兼具两者的。所有流都是 EventEmitter 的实例。
+可以通过require(‘stream’)加载Stream基类。其中包括了 Readable 流、Writable 流、Duplex 流和 Transform 流的基类。
+流（Stream），我们先说流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mizhe code freamwork instuction">
-<meta property="og:url" content="http://joeyzone.github.io/2015/04/24/mizhe-code-freamwork-instuction/index.html">
+<meta property="og:title" content="nodeJS流的理解">
+<meta property="og:url" content="http://joeyzone.github.io/2015/10/14/nodeJS流的理解/index.html">
 <meta property="og:site_name" content="Joey's Blog">
-<meta property="og:description" content="米折框架代码说明书文章结尾有简单代码规范可参考
-环境配置
-首先在本机安装nodejs及npm
-安装完成后运行
-npm install -g bakari-builder
-
-从svn下载最新项目代码 svn地址 : http://svn.mizhe.com/repos/mizhe/trunk
-
-进入项目根目录如：cd D://mizhe
-执行bakari命令
-//此命令用来生成测试环境代码及线上压缩">
-<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/blog11.jpg">
+<meta property="og:description" content="流是一个抽象接口，被 Node 中的很多对象所实现。比如对一个 HTTP 服务器的请求是一个流，stdout 也是一个流。流是可读、可写或兼具两者的。所有流都是 EventEmitter 的实例。
+可以通过require(‘stream’)加载Stream基类。其中包括了 Readable 流、Writable 流、Duplex 流和 Transform 流的基类。
+流（Stream），我们先说流">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/1014.jpg">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/10141.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mizhe code freamwork instuction">
-<meta name="twitter:description" content="米折框架代码说明书文章结尾有简单代码规范可参考
-环境配置
-首先在本机安装nodejs及npm
-安装完成后运行
-npm install -g bakari-builder
-
-从svn下载最新项目代码 svn地址 : http://svn.mizhe.com/repos/mizhe/trunk
-
-进入项目根目录如：cd D://mizhe
-执行bakari命令
-//此命令用来生成测试环境代码及线上压缩">
+<meta name="twitter:title" content="nodeJS流的理解">
+<meta name="twitter:description" content="流是一个抽象接口，被 Node 中的很多对象所实现。比如对一个 HTTP 服务器的请求是一个流，stdout 也是一个流。流是可读、可写或兼具两者的。所有流都是 EventEmitter 的实例。
+可以通过require(‘stream’)加载Stream基类。其中包括了 Readable 流、Writable 流、Duplex 流和 Transform 流的基类。
+流（Stream），我们先说流">
   
   
 
@@ -137,11 +114,11 @@ var _hmt = _hmt || [];
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><a class="page-title-link" href="/categories/mizhe/">mizhe</a></h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/nodeJS/">nodeJS</a></h1>
             </div>
             <div class="main-body-content">
               
-  <article id="post-mizhe-code-freamwork-instuction" class="article article-single article-type-post" itemscope itemprop="blogPost">
+  <article id="post-nodeJS流的理解" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
       <!--  -->
       
@@ -149,53 +126,154 @@ var _hmt = _hmt || [];
           
   
     <h1 class="article-title" itemprop="name">
-      mizhe code freamwork instuction
+      nodeJS流的理解
     </h1>
   
 
         </header>
       
       <p class="article-byline">
-        <a href="/2015/04/24/mizhe-code-freamwork-instuction/" class="article-date">
-  <time datetime="2015-04-24T06:07:52.000Z" itemprop="datePublished">2015-04-24</time>
+        <a href="/2015/10/14/nodeJS流的理解/" class="article-date">
+  <time datetime="2015-10-14T06:51:50.000Z" itemprop="datePublished">2015-10-14</time>
 </a>
       </p>
       <div class="article-entry" itemprop="articleBody">
-        <h2 id="米折框架代码说明书">米折框架代码说明书</h2><h6 id="文章结尾有简单代码规范可参考">文章结尾有简单代码规范可参考</h6><p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/blog11.jpg"></p>
-<h2 id="环境配置">环境配置</h2><ul>
-<li>首先在本机安装nodejs及npm</li>
-<li><p>安装完成后运行</p>
-<pre><code>npm <span class="keyword">install</span> -g bakari-builder
-</code></pre></li>
-<li><p>从svn下载最新项目代码 svn地址 : <a href="http://svn.mizhe.com/repos/mizhe/trunk" target="_blank" rel="external">http://svn.mizhe.com/repos/mizhe/trunk</a></p>
-</li>
-<li>进入项目根目录如：cd D://mizhe</li>
-<li><p>执行bakari命令</p>
-<pre><code><span class="comment">//此命令用来生成测试环境代码及线上压缩代码</span>
-bakari build
-</code></pre><h5 id="具体bakari的使用方法请参考_https://github-com/EarlyH/bakari-builder">具体bakari的使用方法请参考 <a href="https://github.com/EarlyH/bakari-builder" target="_blank" rel="external">https://github.com/EarlyH/bakari-builder</a></h5></li>
-</ul>
-<blockquote>
-<hr>
-</blockquote>
+        <p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/1014.jpg" width="100%"></p>
+<p>流是一个抽象接口，被 Node 中的很多对象所实现。比如对一个 HTTP 服务器的请求是一个流，stdout 也是一个流。流是可读、可写或兼具两者的。所有流都是 EventEmitter 的实例。</p>
+<p>可以通过require(‘stream’)加载Stream基类。其中包括了 Readable 流、Writable 流、Duplex 流和 Transform 流的基类。</p>
+<p>流（Stream），我们先说流的使用。这部分比较简单。</p>
+<pre><code><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);
+<span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span> <span class="params">(req, res)</span> </span>{
+    <span class="keyword">var</span> body = <span class="string">''</span>;
+    req.setEncoding(<span class="string">'utf8'</span>);
+    req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(chunk)</span> </span>{
+        body += chunk;
+    });
+    req.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+        <span class="keyword">try</span> {
+            <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(body);
+        } <span class="keyword">catch</span> (er) {
+            res.statusCode = <span class="number">400</span>;
+            <span class="keyword">return</span> res.end(<span class="string">'错误: '</span> + er.message);
+        }
+        res.write(<span class="keyword">typeof</span> data);
+        res.end();
+    }
+});
+server.listen(<span class="number">1337</span>);
+</code></pre><p>就像这样，req就是一个流，它怎么产生的，我们不知道，只知道是网页请求然后被createServer这个方法做了某些事，把httpRequest包装成了req流。不管，反正我们有个req流对象了。再深入点，官网说是An IncomingMessage object，It implements the Readable Stream interface。那res就是 implements Writable Stream interface。就是这么聪明。</p>
+<p>这段代码来自node官网。应该比较容易理解。流之所以称之为流，是因为像水流一样。这样说还是抽象。<br>Readable流有两种模式。流动模式和暂停模式。就像自来水一样。流动模式就是读出数据。流默认处于暂停模式。</p>
+<p>有三种方法可以切换到流动模式。(打开水龙头)</p>
+<p>流对象监听一个’data’事件。</p>
+<p>流对象直接调用resume方法。开启流数据。</p>
+<p>调用pipe()方法把数据写到一个Writeable stream。</p>
+<p>三种方法,分两种情况切换流到暂停模式。(关闭水龙头)</p>
+<p>如果没有导流目标,也就是没有Writeable stream接收。调用pause()方法。</p>
+<p>如果有导流目标。移除所有’data’事件处理器。或者调用unpipe()方法移除所有导流目标。这里不是或者，应该是视情况而定。</p>
+<p>我们再回到官网的这个代码例子。这样写规避了一个问题。body += chunk;其实是把req流的数据暂时存到body变量。</p>
+<p>如果一个程序是需要及时读写的呢？</p>
+<p>我们大概会这样写：</p>
+<pre><code><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+<span class="keyword">var</span> readStream = fs.createReadStream(<span class="string">'/path/to/source'</span>);
+<span class="keyword">var</span> writeStream = fs.createWriteStream(<span class="string">'/path/to/dest'</span>);
 
+readStream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span><span class="params">(chunk)</span> </span>{ <span class="comment">// 当有数据流出时，写入数据</span>
+    writeStream.write(chunk);
+});
+
+readStream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ <span class="comment">// 当没有数据时，关闭数据流</span>
+    writeStream.end();
+});
+</code></pre><p>这样写就会有问题。如果写入速度跟不上流的读取速度，可能会导致数据丢失。因此，正常情况是，读一段，写一段，如果没写完，就暂停。等写完再读。<br>于是代码改为：</p>
+<pre><code><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+<span class="keyword">var</span> readStream = fs.createReadStream(<span class="string">'/path/to/source'</span>);
+<span class="keyword">var</span> writeStream = fs.createWriteStream(<span class="string">'/path/to/dest'</span>);
+
+readStream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span><span class="params">(chunk)</span> </span>{ <span class="comment">// 当有数据流出时，写入数据</span>
+    <span class="keyword">if</span> (writeStream.write(chunk) === <span class="literal">false</span>) { <span class="comment">// 如果没有写完，暂停读取流</span>
+        readStream.pause();
+    }
+});
+
+writeStream.on(<span class="string">'drain'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ <span class="comment">// 写完后，继续读取</span>
+    readStream.resume();
+});
+
+readStream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ <span class="comment">// 当没有数据时，关闭数据流</span>
+    writeStream.end();
+});
+</code></pre><p>其实这就是个copy嘛。每次都要写这么大段代码？于是我们有了pipe</p>
+<pre><code>// pipe自动调用了data,end等事件
+<span class="built_in">fs</span>.createReadStream('/<span class="built_in">path</span>/to/source').pipe(<span class="built_in">fs</span>.createWriteStream('/<span class="built_in">path</span>/to/dest'));
+</code></pre><p>有关Writable stream,这里重点介绍对象的’drain’事件。上面的代码也用到了。write方法如果没有写完的话，返回为false。注意，这里chunk解释为一个数据块。连一个readable stream的小块都没有写完，当然不能接收下一个块了，不然会产生丢失。分块读写也是我们为什么使用流的好处之一。于是我们暂停了读取流。</p>
+<p>stream.Duplex和stream.Transform</p>
+<p>他们都同时实现了 Readable 和 Writable 的接口   </p>
+<p>转换（Transform）流是一种输出由输入计算所得的双工流。</p>
+<p>其实这四个类都是实现了相对应的方法的抽象类。你要实现自己的流时，也必须实现相应的方法。</p>
+<p><img src="http://7xiqu0.com1.z0.glb.clouddn.com/10141.png" width="100%"></p>
+<p>在您的实现代码中，十分重要的一点是绝对不要调用上文面向流消费者的 API 中所描述的方法，否则可能在消费您的流接口的程序中产生潜在的副作用。</p>
+<p>我们具体介绍下Readable的实现。<br>这是一个 Readable 流的基本例子。它将从 1 至 1,000,000 递增地触发数字，然后结束。</p>
+<pre><code><span class="keyword">var</span> Readable = <span class="built_in">require</span>(<span class="string">'stream'</span>).Readable;
+<span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);
+util.inherits(Counter, Readable);
+
+
+<span class="function"><span class="keyword">function</span> <span class="title">Counter</span><span class="params">(opt)</span> </span>{
+  Readable.call(<span class="keyword">this</span>, opt);
+  <span class="keyword">this</span>._max = <span class="number">1000000</span>;
+  <span class="keyword">this</span>._index = <span class="number">1</span>;
+}
+
+
+Counter.prototype._read = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="keyword">var</span> i = <span class="keyword">this</span>._index++;
+  <span class="keyword">if</span> (i &gt; <span class="keyword">this</span>._max)
+    <span class="keyword">this</span>.push(<span class="literal">null</span>);
+  <span class="keyword">else</span> {
+    <span class="keyword">var</span> str = <span class="string">''</span> + i;
+    <span class="keyword">var</span> buf = <span class="keyword">new</span> Buffer(str, <span class="string">'ascii'</span>);
+    <span class="keyword">this</span>.push(buf);
+  }
+};
+</code></pre><p>上面例子我们实现了一个叫Counter的只读流，我们实现了它的_read方法。<br>push这个方法同样应该被 Readable 实现者调用，而不是Readable 流直接调用。</p>
+<p>push() 方法会明确地向读取队列中插入一些数据。如果调用它时传入了 null 参数，那么它会触发数据结束信号（EOF）。</p>
+<p>Readable构造方法的参数options有个属性objectMode。<br>objectMode {Boolean} : 该流是否应该表现为对象的流。意思是说 stream.read(n) 返回一个单独的对象，而不是大小为 n 的 Buffer<br>刚看这段话的时候其实我是不懂的。直到我读了gulp-relace插件的源码。主动把objectMode设为了true。再仔细一想，就懂了。</p>
+<p>用中文解释这句话就是，一般情况下Readable流的read方法返回的是大小为n的Buffer，但是设置了true之后，返回的是一个对象。说了等于没说。</p>
+<p>拿gulp举例。</p>
+<pre><code>gulp.task(<span class="string">'scripts'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> gulp.src(<span class="string">'./src/**/*.js'</span>)
+        .pipe(uglify())
+        .pipe(concat(<span class="string">'all.min.js'</span>))
+        .pipe(gulp.dest(<span class="string">'build/'</span>));
+});
+</code></pre><p>这是一个普通gulp的task写法。但是如果这样写呢？</p>
+<pre><code>var uglify = <span class="keyword">require</span>(<span class="string">'gulp-uglify'</span>),
+<span class="keyword">rename</span> = <span class="keyword">require</span>(<span class="string">'gulp-rename'</span>);
+gulp.task(<span class="string">'bundle'</span>, function() {
+    <span class="keyword">return</span> fs.createReadStream(<span class="string">'app.js'</span>)
+        .<span class="keyword">pipe</span>(uglify())
+        .<span class="keyword">pipe</span>(<span class="keyword">rename</span>(<span class="string">'bundle.min.js'</span>))
+        .<span class="keyword">pipe</span>(gulp.dest(<span class="string">'dist/'</span>));
+});
+</code></pre><p>fs.createReadStream(‘app.js’)生成一个只读流，然后pipe出来，看起来和第一种写法是一样的。但是运行之后会报错，这是为啥呢？原因就是gulp插件希望得到的流是一个Vinyl文件对象。这就是为啥gulp插件<br>会设置objectMode为true的原因。</p>
+<h3 id="未完待续……">未完待续……</h3>
         <p class="last-important-text">如果还有问题可以留言，必定知无不言。</p>
         <p class="last-important-text">想要搜索历史文章可使用右上角站内搜索。</p>
         <p class="last-important-text">如果觉得稍微对您有用，请用支付宝轻扫下面捐赠二维码，可适当捐献。</p>
         <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.png" class="pay-img">
       </div>
       <footer class="article-footer">
-        <a data-url="http://joeyzone.github.io/2015/04/24/mizhe-code-freamwork-instuction/" data-id="cifqge00v000goguuhjetn3wg" class="article-share-link">分享到</a>
+        <a data-url="http://joeyzone.github.io/2015/10/14/nodeJS流的理解/" data-id="cifqge00s000boguumlwnsz5e" class="article-share-link">分享到</a>
         
 
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mizhe/">mizhe</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodeJS/">nodeJS</a></li></ul>
 
         
 <div class="pagepart clearfix">
   
+    <a href="/2015/07/21/深入理解ReactJS的Flux单向数据流/" class="alignleft prev" title="深入理解ReactJS的Flux单向数据流">深入理解ReactJS的Flux单向数据流</a>
   
-    <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="alignright next" title="Two-way data binding 数据双向绑定">Two-way data binding 数据双向绑定</a>
     
 </div>
 
@@ -206,7 +284,7 @@ bakari build
   
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-mizhe-code-freamwork-instuction" data-title="mizhe code freamwork instuction" data-url="http://joeyzone.github.io/2015/04/24/mizhe-code-freamwork-instuction/"></div>
+    <div class="ds-thread" data-thread-key="post-nodeJS流的理解" data-title="nodeJS流的理解" data-url="http://joeyzone.github.io/2015/10/14/nodeJS流的理解/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -249,16 +327,12 @@ bakari build
     
 <nav id="article-nav">
   
-    <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <p class="article-nav-title">
-        
-          Two-way data binding 数据双向绑定
-        
-      </p>
-      <i class="icon" id="icon-chevron-right"></i>
-    </a>
   
+    <a href="/2015/07/21/深入理解ReactJS的Flux单向数据流/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">深入理解ReactJS的Flux单向数据流</p>
+      <i class="icon" id="icon-chevron-left"></i>
+    </a>
   
 </nav>
 
