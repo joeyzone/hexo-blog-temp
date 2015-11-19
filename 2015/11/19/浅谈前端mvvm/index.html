@@ -4,17 +4,23 @@
   <meta charset="utf-8">
   <meta name="baidu-site-verification" content="KCpzqK3BrU" />
   
-  <title>Category: javascript-code | Joey&#39;s Blog</title>
+  <title>浅谈前端mvvm | Joey&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个普通前端的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Joey's Blog">
-<meta property="og:url" content="http://joeyzone.github.io/categories/javascript-code/index.html">
+  <meta name="description" content="浅谈前端mvvm模式及knockoutJSGUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。
+基于职责分离的思想都会对应用程序进行分层。用户界面为View，程序的数据为Model，有了这两个自然想到了他们之间的桥梁所以就会产生出MV*(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈前端mvvm">
+<meta property="og:url" content="http://joeyzone.github.io/2015/11/19/浅谈前端mvvm/index.html">
 <meta property="og:site_name" content="Joey's Blog">
-<meta property="og:description" content="一个普通前端的博客">
+<meta property="og:description" content="浅谈前端mvvm模式及knockoutJSGUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。
+基于职责分离的思想都会对应用程序进行分层。用户界面为View，程序的数据为Model，有了这两个自然想到了他们之间的桥梁所以就会产生出MV*(">
+<meta property="og:image" content="http://camo.githubusercontent.com/b89ac314c2fd554e7bf33ba1553e10dd91be44fc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d63616c6c2e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/082052805716330b7c168b8bcd968ffb085b4c21/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76702d63616c6c2e706e67">
+<meta property="og:image" content="http://camo.githubusercontent.com/61ef7578cd46b1d37dd3ea52ce0a3be570e427cc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76766d2d63616c6c2e706e67">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Joey's Blog">
-<meta name="twitter:description" content="一个普通前端的博客">
+<meta name="twitter:title" content="浅谈前端mvvm">
+<meta name="twitter:description" content="浅谈前端mvvm模式及knockoutJSGUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。
+基于职责分离的思想都会对应用程序进行分层。用户界面为View，程序的数据为Model，有了这两个自然想到了他们之间的桥梁所以就会产生出MV*(">
   
   
 
@@ -106,202 +112,153 @@ var _hmt = _hmt || [];
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><i class="icon" id="icon-category"></i>分类：<em class="page-title-link">javascript-code</em></h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/javascript-code/">javascript-code</a></h1>
             </div>
             <div class="main-body-content">
               
-  
-  
-    
-    
+  <article id="post-浅谈前端mvvm" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year"><i class="icon" id="icon-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/2015/11/19/浅谈前端mvvm/" class="thumbnail">
+        <header class="article-header">
+          
   
-    <span style="background-image:url(http://camo.githubusercontent.com/b89ac314c2fd554e7bf33ba1553e10dd91be44fc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d63616c6c2e706e67
-)" alt="浅谈前端mvvm" class="thumbnail-image"></span>
+    <h1 class="article-title" itemprop="name">
+      浅谈前端mvvm
+    </h1>
   
-</a>
 
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/javascript-code/">javascript-code</a></p>
-        <p class="date"><time datetime="2015-11-19T05:30:54.000Z" itemprop="datePublished">2015-11-19</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/11/19/浅谈前端mvvm/" class="title">浅谈前端mvvm</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        浅谈前端mvvm模式及knockoutJSGUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。
-基于职责分离的思想都会对应用程序进行分层。用户界面为View，程序的数据为Model，有了这两个自然想到了他们之间的桥梁所以就会产生出MV*(
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/11/19/浅谈前端mvvm/" class="article-date">
+  <time datetime="2015-11-19T05:30:54.000Z" itemprop="datePublished">2015-11-19</time>
+</a>
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="浅谈前端mvvm模式及knockoutJS">浅谈前端mvvm模式及knockoutJS</h1><p>GUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。</p>
+<p>基于职责分离的思想都会对应用程序进行分层。用户界面为View，程序的数据为Model，有了这两个自然想到了他们之间的桥梁所以就会产生出MV*(MV-whatever)。</p>
+<p>MVC。这就是最熟知的MVC。也就是Smalltalk-80 MVC</p>
+<p>严格的MVC关系应该如下图,这里我们不说服务器端的MVC。只针对前端GUI程序。</p>
+<p><img src="http://camo.githubusercontent.com/b89ac314c2fd554e7bf33ba1553e10dd91be44fc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d63616c6c2e706e67" width="50%"></p>
+<ol>
+<li>View是把控制权交移给Controller，自己不执行业务逻辑。</li>
+<li>Controller执行业务逻辑并且操作Model，但不会直接操作View，可以说它是对View无知的。</li>
+<li>View和Model的同步消息是通过观察者模式进行，而同步操作是由View自己请求Model的数据然后对视图进行更新。</li>
+</ol>
+<p>第一点没什么好说的。第二点，controller操作Model。但是不会直接操作View。view的变化是通过Model的变化而变化。</p>
+<p>那么View是怎么做到对Model的通知的。这就用到观察者模式了。简单描述一下，先把Model中的数据在pubsub对象中监听起来。subscribe。等到Model变化时，pubsub对象publish。</p>
+<p>MVP模式</p>
+<p><img src="https://camo.githubusercontent.com/082052805716330b7c168b8bcd968ffb085b4c21/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76702d63616c6c2e706e67" width="50%"></p>
+<p>MVVM可以看作是一种特殊的MVP（Passive View）模式，或者说是对MVP模式的一种改良。</p>
+<p>2005年微软工程师John Gossman在自己的博客上首次公布了MVVM模式。<br>MVVM代表的是Model-View-ViewModel，什么是ViewModel？他不仅储存了model（Model中需要展示的部分）。他还包括了视图的状态。这点是最关键的。</p>
+<p><img src="http://camo.githubusercontent.com/61ef7578cd46b1d37dd3ea52ce0a3be570e427cc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76766d2d63616c6c2e706e67" width="50%;/"></p>
+<p>Binder可以理解成一个数据绑定引擎。当Model发生变化时，直接通知ViewModel中的模板引擎，最后渲染到view。<br>具体数据如何绑定请看之前的<a href="http://joeyzone.github.io/2015/05/04/Two-way-data-binding-%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" target="_blank">一篇博文</a></p>
+<p>我们拿knockJS来举例说明mvvm是怎样的一种分层思想。</p>
+<p>早在2010年，knockoutJS就已出现在git上，现在社区的活跃度依然是很高的.</p>
+<p>knockoutJS简称KO，现在版本已经到了3.3了。不需要任何依赖，自带页面模板。直接引用就能用，并且压缩后代码只有50k。</p>
+<p>我们一步一步按照knockoutJS的官网教程来，这里的教程只适用3.0以后的。</p>
+<p>KO的三大核心功能：</p>
+<ol>
+<li>监听(observables)和依赖追踪</li>
+<li>申明式绑定</li>
+<li>模板</li>
+</ol>
+<p>Model-View-View Model (MVVM)是一个建立用户界面程序的设计模式，它描述了你能的分离复杂的UI为3个部分。（原谅我的翻译水平）</p>
+<pre><code><span class="keyword">var</span> myViewModel = {
+    personName: <span class="string">'Bob'</span>,
+    personAge: <span class="number">123</span>
+};
+</code></pre><p>你可以生成一个简单的view。like this：</p>
+<pre><code>The <span class="property">name</span> <span class="keyword">is</span> &lt;span data-bind=<span class="string">"text: personName"</span>&gt;&lt;/span&gt;
+</code></pre><p>这时，你的页面是不起作用的，因为你还没有用到KO呢。</p>
+<p>To activate Knockout, add the following line to a \<script\> block:</script\></p>
+<pre><code>ko.applyBindings(myViewModel);
+</code></pre><p>Pretty simple, really.</p>
+<p>但是此时KO的用处也就是一个页面模板和声明式绑定（单向，非auto），它有三大核心功能呢。跟我们所想的View-Model不一样啊。</p>
+<p>比如我此时:</p>
+<pre><code>myViewModel.personName = <span class="string">'Tom'</span>;
+</code></pre><p>页面没有变化。</p>
+<p>How can KO know when parts of your view model change? Answer: you need to declare your model properties as observables,</p>
+<p>重写我们的myViewModel</p>
+<pre><code><span class="component">var myViewModel = {
+    personName: ko<span class="string">.observable('Bob')</span>,
+    personAge: ko<span class="string">.observable(123)</span>
+}</span>;
+</code></pre><p>但此时仍然显示的是Bob不是Tom。为什么呢？因为我们已经用KO的observable的属性，读和写都要用KO的方式。</p>
+<p>myViewModel.personName() will return ‘Bob’,calling myViewModel.personName(‘Mary’) will change the name value to ‘Mary’.</p>
+<p>针对更高级的用户，如果你想注册你自己的活动当observables变化时。</p>
+<pre><code>myViewModel.personName.subscribe(<span class="function"><span class="keyword">function</span><span class="params">(newValue)</span> </span>{
+    alert(<span class="string">"The person's new name is "</span> + newValue);
+});
+</code></pre><p>还有一点需要说明，并不是<br>还可以取消订阅，具体看网站文档吧。不详述了。</p>
+<p>同时。KO也可监听数组ko.observableArray();</p>
+<h4 id="computed_observables(计算属性)">computed observables(计算属性)</h4><p>如果你得到一个observable对象是firstName,另一个是lastName。但是你要显示的是fullName。这时候computed就来了。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">AppViewModel</span><span class="params">()</span> </span>{
+    <span class="keyword">this</span>.firstName = ko.observable(<span class="string">'Bob'</span>);
+    <span class="keyword">this</span>.lastName = ko.observable(<span class="string">'Smith'</span>);
+
+    <span class="keyword">this</span>.fullName = ko.computed(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> <span class="keyword">this</span>.firstName() + <span class="string">" "</span> + <span class="keyword">this</span>.lastName();
+    }, <span class="keyword">this</span>);
+}
+</code></pre><p>这时，KO的核心功能最后一个，依赖追踪也就解释了。计算属性提供了一条依赖链，fullName依赖firstName和lastName。</p>
+<p>讲到这，KO的基本也就讲完了。KO还有一些进阶的东西下面只做补充：</p>
+<h6 id="Pure_computed_observables">Pure computed observables</h6><p>如果计算属性只是单纯的‘计算’，推荐pureComputed更加有效。这是3.2才有的。</p>
+<p>Writable computed observables</p>
+<p>The “template” binding</p>
+<p>Components</p>
+<p>参考文档：</p>
+<blockquote>
+<p><a href="https://github.com/livoras/blog/issues/11" target="_blank" rel="external">https://github.com/livoras/blog/issues/11</a></p>
+<p><a href="http://knockoutjs.com/index.html" target="_blank" rel="external">http://knockoutjs.com/index.html</a></p>
+</blockquote>
+
+        <p class="last-important-text">如果还有问题可以留言，必定知无不言。</p>
+        <p class="last-important-text">想要搜索历史文章可使用右上角站内搜索。</p>
+        <p class="last-important-text">如果觉得稍微对您有用，请用支付宝轻扫下面捐赠二维码，可适当捐献。</p>
+        <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.png" class="pay-img">
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://joeyzone.github.io/2015/11/19/浅谈前端mvvm/" data-id="cih5swjo900086wuuiko1vqjd" class="article-share-link">分享到</a>
+        
+
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+        
+<div class="pagepart clearfix">
+  
+    <a href="/2015/10/14/nodeJS流的理解/" class="alignleft prev" title="nodeJS流的理解">nodeJS流的理解</a>
+  
+    
+</div>
+
+      </footer>
     </div>
   </article>
 
-    
   
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/2015/07/21/深入理解ReactJS的Flux单向数据流/" class="thumbnail">
-  
-    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/720.jpg
-)" alt="深入理解ReactJS的Flux单向数据流" class="thumbnail-image"></span>
-  
-</a>
-
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/javascript-code/">javascript-code</a></p>
-        <p class="date"><time datetime="2015-07-21T09:59:43.000Z" itemprop="datePublished">2015-07-21</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/07/21/深入理解ReactJS的Flux单向数据流/" class="title">深入理解ReactJS的Flux单向数据流</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        深入理解ReactJS的Flux单向数据流
-最近看了些reactJS，想要总结一下。对ReactJS完全不了解的可以参考下阮一峰的博文，入门ReactJShttp://www.ruanyifeng.com/blog/2015/03/react.html
-reactJS和Flux是什么关系呢？
-其实说来reactJS算是一种新语言了，叫做JSX。他只不过用了一个一个JSXTransformer的东西
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/2015/07/21/webpack-初探/" class="thumbnail">
-  
-    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/goros.jpg
-)" alt="webpack 初探" class="thumbnail-image"></span>
-  
-</a>
-
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/javascript-code/">javascript-code</a></p>
-        <p class="date"><time datetime="2015-07-21T09:59:24.000Z" itemprop="datePublished">2015-07-21</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/07/21/webpack-初探/" class="title">webpack 初探</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        Webpack 初探以前文章我介绍过commonJS。也比较过AMD和CMD异同。
-前端模块化编程已经有些时日了，只是前端标准不统一，造成现在不兼容的局面。但是webpack等打包工具的出现打破了这一切，让前端也终于可以解放双手了。当然他也兼容AMD。
-Webpack也出自facebook团队。
-安装及使用：webpack可作为一般的全局npm模块安装
-npm install -g webpack
-      </p>
-    </div>
-  </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/2015/07/10/commonJS-AMD-CMD-之辩/" class="thumbnail">
-  
-    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/top.jpg
-)" alt="commonJS &amp; AMD &amp; CMD" class="thumbnail-image"></span>
-  
-</a>
-
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/javascript-code/">javascript-code</a></p>
-        <p class="date"><time datetime="2015-07-10T06:55:42.000Z" itemprop="datePublished">2015-07-10</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/07/10/commonJS-AMD-CMD-之辩/" class="title">commonJS &amp; AMD &amp; CMD</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        commonJS &amp;amp; AMD &amp;amp; CMD
-这是一个浅显的入门手册（即使不是前端也能轻易理解）ECMAScript2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。在这个刚过去的6月。我们先提一句。他的出现借鉴了commonJS标准，但是肯定是不兼容他的。他推崇的完全就是模块化编程，定义了模块的导入（import）导出（export）。依赖
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="thumbnail">
-  
-    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/0504.jpg
-)" alt="Two-way data binding 数据双向绑定" class="thumbnail-image"></span>
-  
-</a>
-
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/javascript-code/">javascript-code</a></p>
-        <p class="date"><time datetime="2015-05-04T03:31:56.000Z" itemprop="datePublished">2015-05-04</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/05/04/Two-way-data-binding-数据双向绑定/" class="title">Two-way data binding 数据双向绑定</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        数据双向绑定实现及原理从AngularJS深入理解数据绑定。参考博文 http://teropa.info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest.html中文博文 构建自己的AngularJS http://www.ituring.com.cn/article/39865感谢@EarlyH给本文提供的专业讲座
-
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-浅谈前端mvvm" data-title="浅谈前端mvvm" data-url="http://joeyzone.github.io/2015/11/19/浅谈前端mvvm/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'github'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
   
   
-    </div></section>
-  
-
-
 
             </div>
           </section>
@@ -323,6 +280,19 @@ npm install -g webpack
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/14/nodeJS流的理解/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">nodeJS流的理解</p>
+      <i class="icon" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     
