@@ -14,6 +14,7 @@
 <meta property="og:site_name" content="Joey's Blog">
 <meta property="og:description" content="浅谈前端mvvm模式及knockoutJSGUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。
 基于职责分离的思想都会对应用程序进行分层。用户界面为View，程序的数据为Model，有了这两个自然想到了他们之间的桥梁所以就会产生出MV*(">
+<meta property="og:image" content="http://7xiqu0.com1.z0.glb.clouddn.com/121.jpg">
 <meta property="og:image" content="http://camo.githubusercontent.com/b89ac314c2fd554e7bf33ba1553e10dd91be44fc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d63616c6c2e706e67">
 <meta property="og:image" content="https://camo.githubusercontent.com/082052805716330b7c168b8bcd968ffb085b4c21/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76702d63616c6c2e706e67">
 <meta property="og:image" content="http://camo.githubusercontent.com/61ef7578cd46b1d37dd3ea52ce0a3be570e427cc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76766d2d63616c6c2e706e67">
@@ -136,9 +137,9 @@ var _hmt = _hmt || [];
 </a>
       </p>
       <div class="article-entry" itemprop="articleBody">
-        <h1 id="浅谈前端mvvm模式及knockoutJS">浅谈前端mvvm模式及knockoutJS</h1><p>GUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。</p>
+        <h1 id="浅谈前端mvvm模式及knockoutJS">浅谈前端mvvm模式及knockoutJS</h1><p><img width="90%" src="http://7xiqu0.com1.z0.glb.clouddn.com/121.jpg"><br>GUI程序都面临一个问题，用户操作界面行为。执行业务逻辑，可能导致程序数据的更新。同时数据的更新又要显示在展示界面上。例如对一个表格中，点击手机号一列的头部，这一列根据数据中的国籍所有手机号全部加86或者其他前缀。</p>
 <p>基于职责分离的思想都会对应用程序进行分层。用户界面为View，程序的数据为Model，有了这两个自然想到了他们之间的桥梁所以就会产生出MV*(MV-whatever)。</p>
-<p>MVC。这就是最熟知的MVC。也就是Smalltalk-80 MVC</p>
+<h3 id="MVC">MVC</h3><p>这就是最熟知的MVC。也就是Smalltalk-80 MVC</p>
 <p>严格的MVC关系应该如下图,这里我们不说服务器端的MVC。只针对前端GUI程序。</p>
 <p><img src="http://camo.githubusercontent.com/b89ac314c2fd554e7bf33ba1553e10dd91be44fc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d63616c6c2e706e67" width="50%"></p>
 <ol>
@@ -148,13 +149,12 @@ var _hmt = _hmt || [];
 </ol>
 <p>第一点没什么好说的。第二点，controller操作Model。但是不会直接操作View。view的变化是通过Model的变化而变化。</p>
 <p>那么View是怎么做到对Model的通知的。这就用到观察者模式了。简单描述一下，先把Model中的数据在pubsub对象中监听起来。subscribe。等到Model变化时，pubsub对象publish。</p>
-<p>MVP模式</p>
-<p><img src="https://camo.githubusercontent.com/082052805716330b7c168b8bcd968ffb085b4c21/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76702d63616c6c2e706e67" width="50%"></p>
+<h3 id="MVP模式">MVP模式</h3><p><img src="https://camo.githubusercontent.com/082052805716330b7c168b8bcd968ffb085b4c21/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76702d63616c6c2e706e67" width="50%"></p>
 <p>MVVM可以看作是一种特殊的MVP（Passive View）模式，或者说是对MVP模式的一种改良。</p>
-<p>2005年微软工程师John Gossman在自己的博客上首次公布了MVVM模式。<br>MVVM代表的是Model-View-ViewModel，什么是ViewModel？他不仅储存了model（Model中需要展示的部分）。他还包括了视图的状态。这点是最关键的。</p>
+<h3 id="MVVM">MVVM</h3><p>2005年微软工程师John Gossman在自己的博客上首次公布了MVVM模式。<br>MVVM代表的是Model-View-ViewModel，什么是ViewModel？他不仅储存了model（Model中需要展示的部分）。他还包括了视图的状态。这点是最关键的。</p>
 <p><img src="http://camo.githubusercontent.com/61ef7578cd46b1d37dd3ea52ce0a3be570e427cc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76766d2d63616c6c2e706e67" width="50%;/"></p>
 <p>Binder可以理解成一个数据绑定引擎。当Model发生变化时，直接通知ViewModel中的模板引擎，最后渲染到view。<br>具体数据如何绑定请看之前的<a href="http://joeyzone.github.io/2015/05/04/Two-way-data-binding-%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" target="_blank">一篇博文</a></p>
-<p>我们拿knockJS来举例说明mvvm是怎样的一种分层思想。</p>
+<h3 id="knockJS">knockJS</h3><p>我们拿knockJS来举例说明mvvm是怎样的一种分层思想。</p>
 <p>早在2010年，knockoutJS就已出现在git上，现在社区的活跃度依然是很高的.</p>
 <p>knockoutJS简称KO，现在版本已经到了3.3了。不需要任何依赖，自带页面模板。直接引用就能用，并且压缩后代码只有50k。</p>
 <p>我们一步一步按照knockoutJS的官网教程来，这里的教程只适用3.0以后的。</p>
@@ -172,10 +172,12 @@ var _hmt = _hmt || [];
 </code></pre><p>你可以生成一个简单的view。like this：</p>
 <pre><code>The <span class="property">name</span> <span class="keyword">is</span> &lt;span data-bind=<span class="string">"text: personName"</span>&gt;&lt;/span&gt;
 </code></pre><p>这时，你的页面是不起作用的，因为你还没有用到KO呢。</p>
-<p>To activate Knockout, add the following line to a \<script\> block:</script\></p>
-<pre><code>ko.applyBindings(myViewModel);
-</code></pre><p>Pretty simple, really.</p>
-<p>但是此时KO的用处也就是一个页面模板和声明式绑定（单向，非auto），它有三大核心功能呢。跟我们所想的View-Model不一样啊。</p>
+<pre><code><span class="tag">To</span> <span class="tag">activate</span> <span class="tag">Knockout</span>, <span class="tag">add</span> <span class="tag">the</span> <span class="tag">following</span> <span class="tag">line</span> <span class="tag">to</span> <span class="tag">a</span> \&lt;<span class="tag">script</span>\&gt; <span class="rule"><span class="attribute">block</span>:<span class="value">
+
+    ko.<span class="function">applyBindings</span>(myViewModel)</span></span>;
+
+<span class="tag">Pretty</span> <span class="tag">simple</span>, <span class="tag">really</span>.
+</code></pre><p>但是此时KO的用处也就是一个页面模板和声明式绑定（单向，非auto），它有三大核心功能呢。跟我们所想的View-Model不一样啊。</p>
 <p>比如我此时:</p>
 <pre><code>myViewModel.personName = <span class="string">'Tom'</span>;
 </code></pre><p>页面没有变化。</p>
@@ -208,11 +210,9 @@ var _hmt = _hmt || [];
 <p>Writable computed observables</p>
 <p>The “template” binding</p>
 <p>Components</p>
-<p>参考文档：</p>
-<blockquote>
-<p><a href="https://github.com/livoras/blog/issues/11" target="_blank" rel="external">https://github.com/livoras/blog/issues/11</a></p>
+<p>未完待续……</p>
+<p>参考文档：<br><a href="https://github.com/livoras/blog/issues/11" target="_blank" rel="external">https://github.com/livoras/blog/issues/11</a></p>
 <p><a href="http://knockoutjs.com/index.html" target="_blank" rel="external">http://knockoutjs.com/index.html</a></p>
-</blockquote>
 
         <p class="last-important-text">如果还有问题可以留言，必定知无不言。</p>
         <p class="last-important-text">想要搜索历史文章可使用右上角站内搜索。</p>
@@ -220,7 +220,7 @@ var _hmt = _hmt || [];
         <img src="http://7xiqu0.com1.z0.glb.clouddn.com/pay.png" class="pay-img">
       </div>
       <footer class="article-footer">
-        <a data-url="http://joeyzone.github.io/2015/11/19/浅谈前端mvvm/" data-id="cih5swjo900086wuuiko1vqjd" class="article-share-link">分享到</a>
+        <a data-url="http://joeyzone.github.io/2015/11/19/浅谈前端mvvm/" data-id="cihn7fjuu00089cuui42ctyms" class="article-share-link">分享到</a>
         
 
         
@@ -308,7 +308,7 @@ var _hmt = _hmt || [];
               
 <a href="/2015/11/19/浅谈前端mvvm/" class="thumbnail">
   
-    <span style="background-image:url(http://camo.githubusercontent.com/b89ac314c2fd554e7bf33ba1553e10dd91be44fc/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d63616c6c2e706e67
+    <span style="background-image:url(http://7xiqu0.com1.z0.glb.clouddn.com/121.jpg
 )" alt="浅谈前端mvvm" class="thumbnail-image"></span>
   
 </a>
