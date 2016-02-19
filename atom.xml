@@ -4,7 +4,7 @@
   <subtitle><![CDATA[my codeing road]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://joeyzone.github.io/"/>
-  <updated>2015-12-01T09:51:46.000Z</updated>
+  <updated>2016-02-19T02:41:10.000Z</updated>
   <id>http://joeyzone.github.io/</id>
   
   <author>
@@ -13,6 +13,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[React-Native入门 & NAS项目简]]></title>
+    <link href="http://joeyzone.github.io/2016/02/19/React-Native%E5%85%A5%E9%97%A8-NAS%E9%A1%B9%E7%9B%AE%E7%AE%80/"/>
+    <id>http://joeyzone.github.io/2016/02/19/React-Native入门-NAS项目简/</id>
+    <published>2016-02-19T02:39:28.000Z</published>
+    <updated>2016-02-19T02:41:10.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="react-native_入门">react-native 入门</h3><h4 id="引言">引言</h4><p>其实，前端这个职业所掌握的就是三个技能，html,css,js。任何其他技术都只是他们的衍生。但是并不意味着你只需要掌握这三个技能就OK了。</p>
+<p>一个前端的发展应该是面向全栈及全平台的。比如，node是面向全栈。而react则是面向全平台的途径。</p>
+<h3 id="1-react-native_简介">1.react-native 简介</h3><p>相信大家都听说过或学习过react。react说出的口号就是learn once, write anywhere。大家好好体会下。</p>
+<p>其实这句话说白了是21世纪最重要的是什么？人才。因为java那套write once,run anywhere 早就被时代淘汰（起码现在不会再用java开发游戏期望在手机和PC都能顺畅运行），我们要的是能write代码的人。不是run anywhere的虚拟机。</p>
+<p>废话不多说，首先你得先掌握一点点的React基础语法，知道什么是属性，什么是状态机，了解生命周期。</p>
+<p>然后就是reacrt-native事实上的流程，这里拿ios举例。android同理。</p>
+<p><img src="http://cc.cocimg.com/api/uploads/20150331/1427787536822617.jpg" width="70%"></p>
+<p>中间过程省略的话，就是把js转成了object-c，这就是react-native干的事。</p>
+<h3 id="2-react-native_入门">2.react-native 入门</h3><p>其实react-native提供的不仅是这样一个转化，她更加提供了很多组件，并且原生API。</p>
+<p>比如像View,就可以想象成div, Image就是img。等等。但是千万不要和DOM扯上关系。DOM是运行在浏览器的那个东西。</p>
+<p>我们可以利用这些原生的组件自己写组件。react-native的编程是完全组件化的编程。每一个组件模块包含了展示部分。比如：</p>
+<pre><code>var MyCompnent = React.createClass({
+    ...
+    render() {
+      return (
+        <span class="variable">&lt;TouchableOpacity onPress={() =&gt;</span> this.<span class="built_in">set</span>State({myButtonOpacity: <span class="number">0.5</span>})}
+                          <span class="keyword">on</span>PressOut={() =&gt; this.<span class="built_in">set</span>State({myButtonOpacity: <span class="number">1</span>})}&gt;
+          <span class="variable">&lt;View style={[styles.button, {opacity: this.state.myButtonOpacity}]}&gt;</span>
+            <span class="variable">&lt;Text&gt;</span>Press me!<span class="variable">&lt;/Text&gt;</span>
+          <span class="variable">&lt;/View&gt;</span>
+        <span class="variable">&lt;/TouchableOpacity&gt;</span>
+      )
+    }
+    ...
+});
+</code></pre><p>这就是我的一个自定义组件。我直接</p>
+<pre><code><span class="tag">&lt;MyCompnent/&gt;</span> 
+</code></pre><p>或者 </p>
+<pre><code><span class="tag">&lt;<span class="title">MyCompnent</span>&gt;</span>...<span class="tag">&lt;/<span class="title">MyCompnent</span>&gt;</span>
+</code></pre><p>关于属性，就像DOM里面有alt,src,href等等，她的原生组件也都有自己的属性，自定义组件可自定义属性。属性值得获取就不多说了，看react语法。</p>
+<p>关于状态机，属性是一些不会变动的值，而状态是发生改变后影响组件变化的一系列值。状态值一旦改变，将影响组件用到这个state值部分改变，这只是简单阐述状态，如果想深入了解请参考有关Virtual Dom的文档。</p>
+<h3 id="3-NAS_简介">3.NAS 简介</h3><p>NAS是结合原先的HMS给运营做的一套React-Native代码自动生成工具。由于现阶段，基本没有哪个APP是完全用React-Native写出来的，所以我们必须把RN的代码植入到原生的APP中。这就是NAS要干的事。</p>
+<p>首先。我们写的其实都是JSX语法的代码。APP端需要的是通过RN打包好的bundle后缀的Js代码。并且我们需要认识到，APP要的入口文件都是一样的且只有一个。根据具体要求拿不同的自定义组件往里装。</p>
+<p>我们要写的就是这些自定义组件。</p>
+<h4 id="NAS的总体流程">NAS的总体流程</h4><ol>
+<li>HMS从NAS获取到自定义组件列表及列表需要的配置项json。可供运营来配置。</li>
+<li>运营操作完成后生成json格式配置，调用NAS中接口，根据模板（也就是入口文件）生成JSX代码字符串，交给回调。</li>
+<li>HMS获得回调的JSX字符串，储存文件在本地。启用RN服务（server），自动监听（watch）其中文件变化。生成budle。</li>
+<li>可通过调用<a href="http://192.168......./path/to/moduleName.(map|bundle" target="_blank" rel="external">http://192.168......./path/to/moduleName.(map|bundle</a>) query params来获得最后的bundle文件并储存。以供APP使用。</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="react-native_入门">react-native 入门</h3><h4 id="引言">引言</h4><p>其实，前端这个职业所掌握的就是三个技能，html,css,js。任何其他技术都只是他们的衍生。但是并不意味着你只需要掌握这三个技能就OK了。</p]]>
+    </summary>
+    
+      <category term="React-Native" scheme="http://joeyzone.github.io/tags/React-Native/"/>
+    
+      <category term="React-Native" scheme="http://joeyzone.github.io/categories/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[浅谈前端mvvm]]></title>
